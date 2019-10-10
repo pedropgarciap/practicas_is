@@ -1,5 +1,5 @@
 # Añadir tratamiento
-**ID**:13 **Descripción**: Se añade un nuevo tratamiento a un paciente determinado.
+**ID**:12 **Descripción**: Se añade un nuevo tratamiento a un paciente determinado.
 
 **Actores principales**: Administrador.
 
