@@ -1,5 +1,5 @@
 # Modificar tratamiento
-**ID**:14 **Descripción**: Se modifica un tratamiento de paciente determinado.
+**ID**:13 **Descripción**: Se modifica un tratamiento de paciente determinado.
 
 **Actores principales**: Administrador.
 
