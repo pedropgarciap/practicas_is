@@ -1,5 +1,5 @@
 # Buscar historial del paciente
-**ID**:12 **Descripción**: Se busca y muestra el historial completo de un paciente determinado.
+**ID**:11 **Descripción**: Se busca y muestra el historial completo de un paciente determinado.
 
 **Actores principales**: Administrador.
 
