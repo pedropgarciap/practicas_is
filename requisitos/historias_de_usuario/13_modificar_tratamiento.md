@@ -4,7 +4,7 @@
 
 **Descripción**:
 
-Como *secretario/a o médico/a* quiero *poder modificar tratamientos de determinados pacientes* para *adecuar el tratamiento del paciente a su estado de salud en funcion de si mejora o empeora*.
+Como *administrador* quiero *poder modificar tratamientos de determinados pacientes* para *adecuar el tratamiento del paciente a su estado de salud en funcion de si mejora o empeora*.
 
 **Validación**:
 
