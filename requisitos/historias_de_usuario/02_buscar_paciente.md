@@ -3,7 +3,7 @@
 
 **Descripción**
 
-Como administrador quiero encontrar un paciente junto sus datos y opciones.
+Como administrador quiero encontrar un paciente junto sus datos y opciones para usar esa información como necesite.
 
 **Validación**
 
