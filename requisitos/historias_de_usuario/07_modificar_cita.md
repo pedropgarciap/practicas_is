@@ -3,7 +3,7 @@
 
 **Descripción**
 
-Como administrador quiero encontrar una cita determinada y cambiar uno o varios de sus campos.
+Como administrador quiero encontrar una cita determinada y cambiar uno o varios de sus campos para corregir errores o hacer posibles modificaciones de las citas.
 
 **Validación**
 
