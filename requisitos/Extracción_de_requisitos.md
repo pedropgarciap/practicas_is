@@ -42,6 +42,9 @@
 1. Añadir Tratamiento
 1. Modificar tratamiento
 1. Eliminar paciente (con comprobación)
+1. Consultar citas de un paciente
+1. Añadir entrada al historial médico
+1. Consultar tratamientos de un paciente
 
 
 #### Requisitos no funcionales
