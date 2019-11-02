@@ -5,7 +5,7 @@
 
 **Descripción**
 
-Como administrador quiero añadir un nuevo paciente junto con sus datos para almacenarlo en la base de datos.
+Como *administrador* quiero *añadir un nuevo paciente junto con sus datos* para *almacenarlo en la base de datos*.
 
 **Validación**
 
