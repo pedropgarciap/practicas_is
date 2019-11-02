@@ -25,3 +25,4 @@
 **Flujos alternativos**:
   3.a. Si el paciente no existe, se mostrará por pantalla un error.
   5.a. Si hay una cita como mínimo, se mostrará por pantalla un error.
+  
