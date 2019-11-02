@@ -3,7 +3,7 @@
 
 **Descripción**
 
-Como administrador quiero encontrar un paciente determinado y cambiar uno o varios de sus campos para corregir posibles errores o añadir cambios según necesite.
+Como *administrador* quiero *encontrar un paciente determinado y cambiar uno o varios de sus campos* para *corregir posibles errores o añadir cambios según necesite*.
 
 **Validación**
 
