@@ -2,7 +2,7 @@
 
 **Descripción**
 
-Como administrador quiero encontrar una cita junto sus datos y opciones.
+Como administrador quiero encontrar una cita junto con sus datos y opciones para usar esa información para posteriores tareas.
 
 **Validación**
 
