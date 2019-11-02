@@ -3,7 +3,7 @@
 
 **Descripción**
 
-Como administrador quiero saber las citas programadas para el dia de hoy para comprobar dicha información y preparar la clínica debidamente.
+Como *administrador* quiero *saber las citas programadas para el dia de hoy* para *comprobar dicha información y preparar la clínica debidamente*.
 
 **Validación**
 
