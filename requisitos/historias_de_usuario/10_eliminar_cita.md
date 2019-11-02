@@ -4,7 +4,7 @@
 
 **Descripción**:
 
-Como *secretario/a o médico/a* quiero *eliminar citas de pacientes* para *que no se encuentren más en el sistema*.
+Como *administrador* quiero *eliminar citas de pacientes* para *que no se encuentren más en el sistema*.
 
 **Validación**:
 
