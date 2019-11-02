@@ -4,7 +4,7 @@
 
 **Descripción**:
 
-Como *secretario/a o médico/a* quiero *ver el historial de un determinado paciente* para *poder realizar operaciones relacionadas con dicho historial además de poder visualizarlo*.
+Como *administrador* quiero *ver el historial de un determinado paciente* para *poder realizar operaciones relacionadas con dicho historial además de poder visualizarlo*.
 
 **Validación**:
 
