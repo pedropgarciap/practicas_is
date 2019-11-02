@@ -3,7 +3,7 @@
 
 **Descripción**
 
-Como administrador quiero poder ver por pantalla a todos los pacientes registrados en la base de datos para modificar sus datos o usar esa información en tareas posteriores.
+Como *administrador* quiero *poder ver por pantalla a todos los pacientes registrados en la base de datos* para *modificar sus datos o usar esa información en tareas posteriores*.
 
 **Validación**
 
