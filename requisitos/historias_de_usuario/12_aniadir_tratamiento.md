@@ -4,7 +4,7 @@
 
 **Descripción**:
 
-Como *secretario/a o médico/a* quiero *poder añadir nuevos tratamientos a pacientes* para *guardar y gestionar su historial médico correctamente*.
+Como *administrador* quiero *poder añadir nuevos tratamientos a pacientes* para *guardar y gestionar su historial médico correctamente*.
 
 **Validación**:
 
