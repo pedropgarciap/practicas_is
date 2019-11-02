@@ -3,7 +3,7 @@
 
 **Descripción**
 
-Como administrador quiero poder borrar a un usurio junto con sus datos.
+Como administrador quiero poder borrar a un usuario junto con sus datos para que la base de datos no contenga pacientes que ya no asistan a la clínica.
 
 **Validación**
 
