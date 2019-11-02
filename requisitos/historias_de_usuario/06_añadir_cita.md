@@ -3,7 +3,7 @@
 
 **Descripción**
 
-Como administrador quiero añadir una nueva cita.
+Como administrador quiero añadir una nueva cita para guardar esa información para posteriores usos.
 
 **Validación**
 
