@@ -13,9 +13,10 @@
 2. El secretario/a o médico/a abre el panel de búsqueda de pacientes.
 3. El secretario/a o médico/a introduce el dni del paciente en cuestión.
 4. El secretario/a o médico/a selecciona al paciente deseado.
-5. El secretario/a o médico/a selecciona introducir una nueva entrada al historial.
-6. El secretario/a o médico/a introduce la entrada en cuestión.
-7. El sistema guarda la nueva entrada a continuación de la anterior sin modificar las que ya se encuentran en el historial.
+5. El secretario/a o médico/a selecciona mostrar historial del paciente.
+6. El secretario/a o médico/a selecciona introducir una nueva entrada al historial.
+7. El secretario/a o médico/a introduce la entrada en cuestión.
+8. El sistema guarda la nueva entrada a continuación de la anterior sin modificar las que ya se encuentran en el historial.
 
 **Postcondiciones**:
 
