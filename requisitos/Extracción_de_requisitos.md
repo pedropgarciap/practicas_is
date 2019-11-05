@@ -38,7 +38,7 @@
 1. Mostrar citas del dia
 1. Busqueda de citas
 1. Eliminar cita
-1. Buscar historial del paciente
+1. Mostrar historial del paciente
 1. Añadir Tratamiento
 1. Modificar tratamiento
 1. Eliminar paciente (con comprobación)
