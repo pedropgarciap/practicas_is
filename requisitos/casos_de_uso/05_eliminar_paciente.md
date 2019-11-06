@@ -8,12 +8,12 @@
 	
 
 **Flujo principal:**
-	1. El usuario desea borrar un paciente de la base de datos.
-	2. Selecciona la opcion borrar paaciente.
-	3. El usuario elige que usuario quiere eliminar.
-	3. El programa volvera a preguntar si esta 100% seguro de querer borrarlo.
-	4. El usuario selecciona si quiere o no borrarlo.
-	5. Programa se encargara de borrar toda la informacion referente a ese paciente.
+1. El usuario desea borrar un paciente de la base de datos.
+2. Selecciona la opcion borrar paaciente.
+3. El usuario elige que usuario quiere eliminar.
+3. El programa volvera a preguntar si esta 100% seguro de querer borrarlo.
+4. El usuario selecciona si quiere o no borrarlo.
+5. Programa se encargara de borrar toda la informacion referente a ese paciente.
 
 **Postcondiciones:**
 	-El programa informa que ha sido borrado.
