@@ -8,11 +8,11 @@
 * Debe existir el paciente en la base de datos.
 
 **Flujo principal:**
-	1. El usuario desea buscar un paciente.
-	2. Selecciona la opción buscar paciente por DNI.
-	3. El usuario introduce el DNI.
-	4. El programa compara el DNI introducido con todos los registrados.
-	5. El programa muestra por pantalla todos los datos del paciente.
+1. El usuario desea buscar un paciente.
+2. Selecciona la opción buscar paciente por DNI.
+3. El usuario introduce el DNI.
+4. El programa compara el DNI introducido con todos los registrados.
+5. El programa muestra por pantalla todos los datos del paciente.
 
 **Postcondiciones:**
 * Se muestran al usuario todas las opciones disponibles a continuación.
