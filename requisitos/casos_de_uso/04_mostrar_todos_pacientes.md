@@ -8,9 +8,9 @@
 	
 
 **Flujo principal:**
-	1. El usuario desea ver cuales son los pacientes en la base de datos.
-	2. El usuario selcciona la opcion mostrar todos los pacientes.
-	3. El programa muestra por pantalla todos los pacientes.
+1. El usuario desea ver cuales son los pacientes en la base de datos.
+2. El usuario selcciona la opcion mostrar todos los pacientes.
+3. El programa muestra por pantalla todos los pacientes.
 
 **Postcondiciones:**
 	-El programa muestra todas las opciones disponibles a continuación.
