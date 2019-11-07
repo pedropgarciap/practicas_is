@@ -18,15 +18,13 @@
 	* Fecha y hora de entrada
 	* Fecha y hora de salida
 	* Nombre Paciente
-	* Motivo de la visita
 * Tratamientos
 	* Duracion
 	* Medicamento
 	* Dosis
 	* Regularidad
 * Historial del paciente
-	* Historial de tratamientos
-	* Historial de citas
+	* Motivo de la visita
 
 #### Requisitos funcionales:		
 1. Añadir paciente
