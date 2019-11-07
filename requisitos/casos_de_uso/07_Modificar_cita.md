@@ -1,4 +1,4 @@
-# Modificar paciente
+# Modificar cita
 
 **ID:** 07	**Descripción:** Se busca la cita para posteriormente modificar alguno de sus campos.
 
