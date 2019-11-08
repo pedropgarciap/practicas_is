@@ -1,0 +1,18 @@
+# Recopilación Diagramas de Secuencias
+
+![Añadir_Paciente](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/01_a%C3%B1adir_paciente.png?raw=true)
+![Buscar_Paciente](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/02_buscar_paciente.png?raw=true)
+![Modificar_Paciente](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/03_modificar_paciente.png?raw=true)
+![Mostrar_Todos_Pacientes](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/04_mostrar_todos_paciente.png?raw=true)
+![Eliminar_Paciente](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/05_eliminar_paciente.png?raw=true)
+![Añadir_Cita](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/06_a%C3%B1adir_cita.png?raw=true)
+![Modificar_Cita](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/07_Modificar_cita.PNG?raw=true)
+![Mostrar_Citas_del_Dia](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/08_Mostrar_citas_del_dia.PNG?raw=true)
+![Buscar_Cita](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/09_Buscar_cita.PNG?raw=true)
+![Eliminar_Cita](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/10_Eliminar_cita.PNG?raw=true)
+![Mostral_Historial_de_Paciente](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/11_Mostrar_historial_de_paciente.PNG?raw=true)
+![Añadir_Tratamiento](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/12_aniadir_tratamiento.png?raw=true)
+![Modificar_Tratamiento](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/13_modificar_tratamiento.png?raw=true)
+![Consultar_Citas](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/14_consultar_citas.png?raw=true)
+![Añadir_Entrada_al_Historial](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/15_aniadir_entrada_al_historial.png?raw=true)
+![Consultar_Tratamientos](https://github.com/i82gapop/practicas_is/blob/master/requisitos/diagramas_de_secuencia/16_consultar_tratamientos.png?raw=true)
