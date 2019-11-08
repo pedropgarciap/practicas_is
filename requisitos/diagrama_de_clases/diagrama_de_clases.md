@@ -27,11 +27,11 @@
 ### Métodos
 
     -Añadir_paciente
-     Función que permite añadir un nuevo paciente en la base de datos junto con toda su información.
+      Función que permite añadir un nuevo paciente en la base de datos junto con toda su información.
     -Buscar_paciente
-     Función que permite encontrar a un paciente en la base de datos solo con introducir el dni del mismo
+      Función que permite encontrar a un paciente en la base de datos solo con introducir el dni del mismo
     -Modificar_paciente
-     Función que permite alterar los datos de un paciente determinado.
+      Función que permite alterar los datos de un paciente determinado.
     -Mostrar_todos
       Función que muestra por pantalla a todos los pacientes de la base de datos.
     -Eliminar_Paciente
