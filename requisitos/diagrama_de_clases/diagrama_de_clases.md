@@ -40,7 +40,8 @@
 # Clase: *Citas*
 ## Esta clase contendrá toda la información referida a las citas de los pacientes (tanto entrada como salida). Como en la clase pacietne, las funciones relacionadas con esta clase van dirigidas a alterar el estado de las citas o añadir nuevas entre otras.
 
-    ### Datos:
+   ### Datos:
+    
       +Fecha_entrada
         Número.
         Fecha a la que entra el paciente a consulta.
@@ -51,7 +52,8 @@
         Cadena de carácteres.
         Nombre del paciente en cuestión.
 
-    ### Métodos
+   ### Métodos
+    
       -Añadir_cita
         Función que permite añadir una nueva cita en la base de datos..
       -Buscar_cita
