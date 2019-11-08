@@ -1,7 +1,7 @@
-#Clase: *Pacientes*
-##Esta clase contendrá toda la información personal relacionada con los pacientes . Así mismo, sus funciones irán dirigidas tanto al movimiento de los mismos por la base de datos como a su muestra por pantalla, entre otras.
+# Clase: *Pacientes*
+## Esta clase contendrá toda la información personal relacionada con los pacientes . Así mismo, sus funciones irán dirigidas tanto al movimiento de los mismos por la base de datos como a su muestra por pantalla, entre otras.
 
-###Datos:
+### Datos:
   +DNI
     Cadena de carácteres.
     DNI del paciente en cuestión.
@@ -24,7 +24,7 @@
     Cadena de carácteres.
     Indica si el paciente viene de forma libre o por el seguro contratado
 
-###Métodos
+### Métodos
   -Añadir_paciente
     Función que permite añadir un nuevo paciente en la base de datos junto con toda su información.
   -Buscar_paciente
@@ -36,10 +36,10 @@
   -Eliminar_Paciente
     Función que permite eliminar a un paciente de la base de datos junto a toda su información.
 
-#Clase: *Citas*
-##Esta clase contendrá toda la información referida a las citas de los pacientes (tanto entrada como salida). Como en la clase pacietne, las funciones relacionadas con esta clase van dirigidas a alterar el estado de las citas o añadir nuevas entre otras.
+# Clase: *Citas*
+## Esta clase contendrá toda la información referida a las citas de los pacientes (tanto entrada como salida). Como en la clase pacietne, las funciones relacionadas con esta clase van dirigidas a alterar el estado de las citas o añadir nuevas entre otras.
 
-    Datos:
+    ### Datos:
       +Fecha_entrada
         Número.
         Fecha a la que entra el paciente a consulta.
@@ -50,7 +50,7 @@
         Cadena de carácteres.
         Nombre del paciente en cuestión.
 
-    Métodos
+    ### Métodos
       -Añadir_cita
         Función que permite añadir una nueva cita en la base de datos..
       -Buscar_cita
@@ -62,10 +62,10 @@
       -Eliminar_cita
         Función que permite eliminar una cita de la base de datos.
 
-Clase: *Tratamientos*
-Esta clase contendrá toda la información referida a los tratamientos que un médico receta a un paciente. El tratamiento no es eliminable pero si modificable.
+# Clase: *Tratamientos*
+## Esta clase contendrá toda la información referida a los tratamientos que un médico receta a un paciente. El tratamiento no es eliminable pero si modificable.
 
-  Datos
+  ### Datos
     +Duración
       Cadena de caractéres
       Duración del tratamiento. La unidad de tiempo la especificará el médico/a o secretario/a.
@@ -79,7 +79,7 @@ Esta clase contendrá toda la información referida a los tratamientos que un m�
       Cadena de caractéres
       Frecuencia del tratamiento
 
-  Métodos
+  ### Métodos
     -Añadir_tratamiento
       Función que permite añadir un tratamineto nuevo a la base de datos.
     -Modificar_tratamiento
@@ -87,14 +87,14 @@ Esta clase contendrá toda la información referida a los tratamientos que un m�
     -Consultar_tratamiento
       Función que muestra un determinado tratamiento pedido por el secretario/a o médico/a.
 
-Clase: *Hitorial del Paciente*
-Esta clase contiene información a cerca del motivo de la visita del paciente. No es eliminable pero si modificable.
+# Clase: *Hitorial del Paciente*
+## Esta clase contiene información a cerca del motivo de la visita del paciente. No es eliminable pero si modificable.
 
-  Datos
+  ### Datos
     +Motivo
       Cadena de carácteres
       Razón de la cita del paciente
-  Métodos
+  ### Métodos
     -Mostrar_historial_paciente
       Función que muestra por pantalla el historial completo de un determinado paciente.
     -Añadir_entrada
