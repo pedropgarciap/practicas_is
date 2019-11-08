@@ -1,40 +1,41 @@
 # Clase: *Pacientes*
 ## Esta clase contendrá toda la información personal relacionada con los pacientes . Así mismo, sus funciones irán dirigidas tanto al movimiento de los mismos por la base de datos como a su muestra por pantalla, entre otras.
 
-### Datos:
-  +DNI
-    Cadena de carácteres.
-    DNI del paciente en cuestión.
-  +Nombre
-    Cadena de carácteres.
-    Nombre del paciente.
-  +Apellido
-    Cadena de carácteres.
-    Ambos apellidos del paciente.
-  +CP
-    Número.
-    Correo postal del paciente.
-  +Fecha de nacimiento
-    Número.
-    Fecha de nacimiento del paciente en cuestión.
-  +Teléfono
-    Número.
-    Teléfono de contacto del paciente.
-  +Libre/Seguro
-    Cadena de carácteres.
-    Indica si el paciente viene de forma libre o por el seguro contratado
+  ### Datos:
+    +DNI
+     Cadena de carácteres.
+      DNI del paciente en cuestión.
+    +Nombre
+      Cadena de carácteres.
+      Nombre del paciente.
+    +Apellido
+      Cadena de carácteres.
+      Ambos apellidos del paciente.
+    +CP
+      Número.
+      Correo postal del paciente.
+    +Fecha de nacimiento
+      Número.
+      Fecha de nacimiento del paciente en cuestión.
+    +Teléfono
+      Número.
+      Teléfono de contacto del paciente.
+    +Libre/Seguro
+      Cadena de carácteres.
+      Indica si el paciente viene de forma libre o por el seguro contratado
 
 ### Métodos
-  -Añadir_paciente
-    Función que permite añadir un nuevo paciente en la base de datos junto con toda su información.
-  -Buscar_paciente
-    Función que permite encontrar a un paciente en la base de datos solo con introducir el dni del mismo
-  -Modificar_paciente
-    Función que permite alterar los datos de un paciente determinado.
-  -Mostrar_todos
-    Función que muestra por pantalla a todos los pacientes de la base de datos.
-  -Eliminar_Paciente
-    Función que permite eliminar a un paciente de la base de datos junto a toda su información.
+
+    -Añadir_paciente
+     Función que permite añadir un nuevo paciente en la base de datos junto con toda su información.
+    -Buscar_paciente
+     Función que permite encontrar a un paciente en la base de datos solo con introducir el dni del mismo
+    -Modificar_paciente
+     Función que permite alterar los datos de un paciente determinado.
+    -Mostrar_todos
+      Función que muestra por pantalla a todos los pacientes de la base de datos.
+    -Eliminar_Paciente
+      Función que permite eliminar a un paciente de la base de datos junto a toda su información.
 
 # Clase: *Citas*
 ## Esta clase contendrá toda la información referida a las citas de los pacientes (tanto entrada como salida). Como en la clase pacietne, las funciones relacionadas con esta clase van dirigidas a alterar el estado de las citas o añadir nuevas entre otras.
