@@ -8,6 +8,7 @@
 
 #### Datos que gestiona el sistema:
 * Pacientes
+	* DNI
 	* Nombre
 	* Apellido
 	* CP
