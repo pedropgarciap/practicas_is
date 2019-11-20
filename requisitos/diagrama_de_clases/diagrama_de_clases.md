@@ -12,8 +12,8 @@
       Cadena de carácteres.
       Ambos apellidos del paciente.
     +CP
-      Número.
-      Correo postal del paciente.
+      String.
+      Dirección postal del paciente.
     +Fecha de nacimiento
       Número.
       Fecha de nacimiento del paciente en cuestión.
