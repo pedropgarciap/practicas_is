@@ -90,7 +90,7 @@
     -Consultar_tratamiento
       Función que muestra un determinado tratamiento pedido por el secretario/a o médico/a.
 
-# Clase: *Hitorial del Paciente*
+# Clase: *Historial del Paciente*
 ## Esta clase contiene información a cerca del motivo de la visita del paciente. No es eliminable pero si modificable.
 
   ### Datos
