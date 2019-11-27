@@ -26,7 +26,7 @@
 	* Regularidad
 * Historial del paciente
 	* Motivo de la visita
-	*Fecha de visita
+	* Fecha de visita
 
 #### Requisitos funcionales:		
 1. Añadir paciente
