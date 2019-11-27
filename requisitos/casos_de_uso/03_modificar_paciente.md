@@ -18,4 +18,4 @@
 * El programa muestra el usuario con los datos cambiados.
 
 **Flujos relativos:**
-* Si el paciente no esta en la base de datos mostrara un mensaje de error.
+* Si el paciente no esta en la base de datos mostrara un mensaje de error
