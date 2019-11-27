@@ -97,6 +97,9 @@
     +Motivo
       Cadena de carácteres
       Razón de la cita del paciente
+    + Fecha
+      Cadena de caractéres
+      Fecha de la visita
   ### Métodos
     -Mostrar_historial_paciente
       Función que muestra por pantalla el historial completo de un determinado paciente.
