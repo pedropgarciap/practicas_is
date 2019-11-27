@@ -1,4 +1,4 @@
-# Buscar paciente por DNI.
+# Buscar cita por DNI.
 
 **ID:** 09	**Descripción:** Se introducen los datos de la cita a buscar.
 
