@@ -3,9 +3,6 @@
 
 #include "pacientes.h"
 #include <list>
-#include <iostream>
-
-using namespace std;
 
 class Sistema
 {
@@ -15,12 +12,24 @@ class Sistema
 
     public:
         
-        inline Sistema(){cout << "SISTEMA CREADO" << endl;};
+        Sistema();
+        ~Sistema();
 
         inline list <Paciente> getPacientes(){return pacientes_;};
 
         bool comprobarExistenciaPaciente(string dni);
+        bool comprobarExistenciaPaciente(string nombre, string apellidos);
         int addPaciente();
+
+        void buscarPaciente(string nombre, string apellidos);
+
+        Paciente * buscaPaciente(string dni);
+        void modificarPaciente();
+
+        void borrarPaciente();
+
+        void leeFichero();
+        void escribeFichero();
 
         void mostrarPacientes();
 
