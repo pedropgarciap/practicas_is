@@ -12,9 +12,9 @@ using namespace std;
 Sistema::Sistema(){
 
     cout << endl;
-    cout << "**********************************************************************************************" << endl;
-    cout << "SISTEMA CREADO"<< endl;
-    cout << "**********************************************************************************************" << endl;
+    cout << "********************************************************************************" << endl;
+    cout << "BIENVENIDO A SU PLATAFORMA DE GESTION DE DATOS"<< endl;
+    cout << "********************************************************************************" << endl;
     cout << endl;
 
     leeFichero();
@@ -137,9 +137,9 @@ Sistema::Sistema(){
 Sistema::~Sistema(){
 
     cout << endl;
-    cout << "**********************************************************************************************" << endl;
-    cout << "SISTEMA DECONSTRUIDO" << endl;
-    cout << "**********************************************************************************************" << endl;
+    cout << "********************************************************************************" << endl;
+    cout << "PROGRAMA CERRADO" << endl;
+    cout << "********************************************************************************" << endl;
     cout << endl;
 }
 
@@ -188,6 +188,7 @@ int Sistema::addPaciente(){
 
         if (comprobarExistenciaPaciente(dni)){
 
+            cout << "Ese DNI ya existe en la base de datos." << endl;
             return -1;
         } 
     } 
@@ -246,10 +247,24 @@ int Sistema::addPaciente(){
             cout << "Por ultimo introduzca Si, si el paciente asiste por el seguro o en su defecto No, si este asiste pagando: ";
             getline(cin, seguro);
             cout << endl;
+            while (opcion != "Salir"){
+
+                if ((seguro == "Si") || (seguro == "No")){
+
+                    opcion = "Salir";
+                }
+
+                else{
+
+                    cout << "Parametro incorrecto. Pruebe a introducir Si, si el paciente asiste por el seguro o en su defecto No, si este asiste pagando: ";
+                    getline(cin, seguro);
+                    cout << endl;
+                }
+            }
+
             auxiliar.setSeguroMutua(seguro);
-            
+
             cout << "\nPARAMETROS INTRODUCIDOS CON EXITO." << endl;
-            opcion = "Salir";
         }
 
         else if (opcion == "N"){
@@ -340,6 +355,7 @@ void Sistema::modificarPaciente(){
             int telefono;
 
             int opcion = m.submenuModificar();
+            string selector;
 
             while (opcion != -1){
 
@@ -421,6 +437,26 @@ void Sistema::modificarPaciente(){
                         cout << "Introduzca Si, si el paciente asiste por el seguro o en su defecto No, si este asiste pagando: ";
                         getline(cin, seguromutua);
                         cout << endl;
+
+
+                        while (selector != "Salir"){
+
+                            if ((seguromutua == "Si") || (seguromutua == "No")){
+
+                                selector = "Salir";
+                            }
+
+                            else{
+
+                                cout << "Parametro incorrecto. Pruebe a introducir Si, si el paciente asiste por el seguro o en su defecto No, si este asiste pagando: ";
+                                getline(cin, seguromutua);
+                                cout << endl;
+                            }
+                        }
+
+                        aux->setSeguroMutua(seguromutua);
+
+                        cout << "\nPARAMETROS INTRODUCIDOS CON EXITO." << endl;
 
                         opcion = 0;
                         break;

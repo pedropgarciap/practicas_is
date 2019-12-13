@@ -37,6 +37,7 @@ public:
     inline void setNombre(string nombre){nombre_ = nombre;};
     inline void setApellidos(string apellidos){apellidos_ = apellidos;};
     inline void setFechaNacimiento(string day, string month, string year){fechanacimiento_ = day+"/"+month+"/"+year;};
+    inline void setFechaNacimiento(string fechanacimiento){fechanacimiento_ = fechanacimiento;};
     inline void setDireccionPostal(string direccionpostal){direccionpostal_ = direccionpostal;};
     inline void setTelefono(int telefono){telefono_ = telefono;};
     inline void setSeguroMutua(string seguromutua){seguromutua_ = seguromutua;};    
