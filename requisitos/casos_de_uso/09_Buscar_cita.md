@@ -5,7 +5,7 @@
 **Actores Principales:** Administrador
 
 **Precondiciones:**
-* Ninguna.
+* La cita deseada debe existir.
 
 **Flujo principal:**
 1. El usuario desea buscar una cita.
