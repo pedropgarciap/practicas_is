@@ -440,7 +440,7 @@ void Sistema::modificarPaciente(){
 
                     case 2:
 
-                        cout << "Introduzca el apellidos para modificarlo: ";
+                        cout << "Introduzca los apellidos para modificarlo: ";
                         getline(cin, apellidos);
                         cout << endl;
 

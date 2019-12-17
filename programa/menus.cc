@@ -14,8 +14,8 @@ int Menu::menuPrincipal(){
 
     int opcion;
 
-    cout << "\nIntroduzca una de las siguientes opciones para que sea ejecutada en el programa:\n";
-    cout << "················································································\n";
+    cout << "\nIntroduzca una de las siguientes opciones:\n";
+    cout << "··········································\n";
     cout << "[1] -> Agregar un paciente a la base de datos.\n";
     cout << "[2] -> Buscar paciente por dni.\n";
     cout << "[3] -> Modificar paciente por dni.\n";
@@ -61,8 +61,8 @@ int Menu::submenuPaciente(){
 
     int opcion;
 
-    cout << "\nIntroduzca una de las siguientes opciones para que sea ejecutada en el programa:\n";
-    cout << "················································································\n";
+    cout << "\nIntroduzca una de las siguientes opciones:\n";
+    cout << "··········································\n";
     cout << "[1] -> Apartado de Tratamientos.\n";
     cout << "[2] -> Apartado de Historial.\n";
     cout << "\n";
@@ -81,8 +81,8 @@ int Menu::submenuTratamientos(){
 
     int opcion;
 
-    cout << "\nIntroduzca una de las siguientes opciones para que sea ejecutada en el programa:\n";
-    cout << "················································································\n";
+    cout << "\nIntroduzca una de las siguientes opciones:\n";
+    cout << "··········································\n";
     cout << "[1] -> Añadir tratamiento.\n";
     cout << "[2] -> Modificar tratamiento.\n";
     cout << "[3] -> Ver tratamientos.\n";
@@ -102,8 +102,8 @@ int Menu::submenuModificarTratamientos(){
 
     int opcion;
 
-    cout << "\nIntroduzca una de las siguientes opciones para que sea ejecutada en el programa:\n";
-    cout << "················································································\n";
+    cout << "\nIntroduzca una de las siguientes opciones:\n";
+    cout << "··········································\n";
     cout << "[1] -> Modificar duración.\n";
     cout << "[2] -> Modificar medicación.\n";
     cout << "[3] -> Modificar dosis.\n";
