@@ -33,6 +33,7 @@ int Menu::menuPrincipal(){
     return opcion;
 }
 
+//Submenu de modificacion de datos del paciente
 int Menu::submenuModificar(){
 
     int opcion;
@@ -57,6 +58,7 @@ int Menu::submenuModificar(){
     return opcion;
 }
 
+//Submenu de posibles opciones para un paciente
 int Menu::submenuPaciente(){
 
     int opcion;
@@ -77,6 +79,7 @@ int Menu::submenuPaciente(){
     return opcion;
 }
 
+//Submenu del tratamiento de un paciente
 int Menu::submenuTratamientos(){
 
     int opcion;
@@ -98,6 +101,7 @@ int Menu::submenuTratamientos(){
     return opcion;
 }
 
+//Submenu de modificacion del tratamiento de un paciente
 int Menu::submenuModificarTratamientos(){
 
     int opcion;

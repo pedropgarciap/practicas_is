@@ -5,6 +5,11 @@
 #include <list>
 #include "tratamientos.h"
 
+/*
+Recoge la clase paciente con todas sus funciones propias como el 
+constructor y las bulgarmente llamadas funciones get y set.
+*/
+
 using namespace std;
 
 class Paciente{
@@ -23,6 +28,7 @@ list <Tratamiento> tratamientos_;
 
 public:
 
+    //CONSTRUCTOR
     Paciente(string dni, string nombre, string apellidos, string fechanacimiento = "XX/XX/XXXX", string direccionpostal = "",
     unsigned long int telefono = 0, string seguromutua = "");   
 

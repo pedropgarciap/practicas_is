@@ -1,5 +1,6 @@
 #include "pacientes.h"
 
+//CONSTRUCTOR
 Paciente::Paciente(string dni, string nombre, string apellidos, string fechanacimiento, string direccionpostal, 
 unsigned long int telefono, string seguromutua){
 

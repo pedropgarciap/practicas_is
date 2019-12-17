@@ -14,7 +14,7 @@ Sistema::Sistema(){
 
     cout << endl;
     cout << "********************************************************************************" << endl;
-    cout << "BIENVENIDO A SU PLATAFORMA DE GESTION DE DATOS"<< endl;
+    cout << "BIENVENIDO A PROGECIT, SU PROGRAMA DE GESTION DE CITAS"<< endl;
     cout << "********************************************************************************" << endl;
     cout << endl;
 
@@ -39,14 +39,14 @@ Sistema::Sistema(){
 
                 break;
 
-            case 1:
+            case 1: //Opcion añadir paciente
                 
                 addPaciente(); //especificar errores
                 
                 opcion = 0;
                 break;
 
-            case 2:
+            case 2: //Opcion buscar paciente
 
                 cout << "Introduzca el DNI del paciente a buscar: ";
                 getline(cin, dni);
@@ -73,14 +73,14 @@ Sistema::Sistema(){
                 opcion = 0;
                 break;       
 
-            case 3:
+            case 3: //Opcion modificar paciente
 
                 modificarPaciente();
 
                 opcion = 0;
                 break;
 
-            case 4:
+            case 4: //Opcion mostrar todos los pacientes
 
                 if (pacientes_.empty()){
 
@@ -95,7 +95,7 @@ Sistema::Sistema(){
                 opcion = 0;
                 break;
 
-            case 5:
+            case 5: //Opcion eliminar paciente
 
                 if (pacientes_.empty()){
 
@@ -110,9 +110,9 @@ Sistema::Sistema(){
                 opcion = 0;
                 break;
 
-            default:
+            default: //Si no introduce un numero de los posibles salta este mensaje y vuelve al menu.
 
-                cout << "La opcion elegida no es valida, prueba a elegir una opcion del menu." << endl;
+                cout << "Opcion no valida, prueba a elegir una opcion del menu." << endl;
                 
                 opcion = 0;
                 break;
@@ -124,7 +124,7 @@ Sistema::~Sistema(){
 
     cout << endl;
     cout << "********************************************************************************" << endl;
-    cout << "PROGRAMA CERRADO" << endl;
+    cout << "CERRANDO PROGRAMA. HASTA PRONTO" << endl;
     cout << "********************************************************************************" << endl;
     cout << endl;
 }
@@ -384,10 +384,10 @@ Paciente * Sistema::buscaPaciente(string dni){
     }
 }
 
-
+//Modifica uno de los parametros del paciente
 void Sistema::modificarPaciente(){
 
-    if (pacientes_.empty()){
+    if (pacientes_.empty()){ //Comprueba que la lista este vacia
 
         cout << "No hay pacientes que modificar." << endl;
     }
@@ -400,7 +400,7 @@ void Sistema::modificarPaciente(){
         getline(cin, dni);
         cout << endl;
 
-        if (!comprobarExistenciaPaciente(dni)){
+        if (!comprobarExistenciaPaciente(dni)){ //Busca un paciente con ese DNI
 
             cout << "No existe dicho paciente." << endl;
         }
@@ -419,7 +419,7 @@ void Sistema::modificarPaciente(){
 
             while (opcion != -1){
 
-                switch(opcion){
+                switch(opcion){ // Switch con las diferentes opciones del submenu modificar paciente.
 
                     case 0:
 
@@ -537,6 +537,7 @@ void Sistema::modificarPaciente(){
     cout << "\nVolviendo al menu principal." << endl;
 }
 
+//Vuelca al fichero pacientes.txt el nuevo paciente
 void Sistema::escribeFichero(){
 
     ofstream salida;
@@ -554,6 +555,7 @@ void Sistema::escribeFichero(){
     salida.close();
 }
 
+//Vuelca al fichero pacientes.txt el nuevo tratamiento
 void Sistema::escribeTratamientos(){
 
         list <Paciente>::iterator i;
@@ -576,6 +578,7 @@ void Sistema::escribeTratamientos(){
         }        
 }
 
+//Elimina un paciente de la base de datos.
 void Sistema::borrarPaciente(){
 
     string dni;
@@ -630,6 +633,7 @@ void Sistema::borrarPaciente(){
     }
 }
 
+//Lee el fichero pacientes y lo carga en la lista
 void Sistema::leeFichero(){
 
     if (!pacientes_.empty()){
@@ -670,6 +674,7 @@ void Sistema::leeFichero(){
     entrada.close();
 }
 
+//Lee el fichero tratamientos y lo carga en la lista
 void Sistema::leeTratamientos(){
 
     list <Paciente>::iterator i;
@@ -722,6 +727,7 @@ void Sistema::mostrarPacientes(){
     cout << "\nPACIENTES MOSTRADOS CON EXITO." << endl;
 }
 
+//Añade un nuevo tratamiento y el anterior pasa a estado obsoleto
 void Sistema::addTratamiento(Paciente & paciente){
 
     string duracion, medicacion, dosis, regularidad;
@@ -759,6 +765,7 @@ void Sistema::addTratamiento(Paciente & paciente){
     escribeTratamientos();
 }
 
+//Cambia alguno de los parametros del tratamiento y lo escribe como uno nuevo
 void Sistema::modificarTratamiento(Paciente &paciente){
 
     if ((paciente.getTratamientos()).empty()){
@@ -858,7 +865,7 @@ void Sistema::modificarTratamiento(Paciente &paciente){
     
 
     
-
+//Muestra todos los tratamientos de un paciente
 void Sistema::mostrarTratamiento(Paciente & paciente){
 
     if ((paciente.getTratamientos()).empty()){

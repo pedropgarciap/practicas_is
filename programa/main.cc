@@ -3,6 +3,8 @@
 
 using namespace std;
 
+//Inicia el programa
+
 int main(){
 
     Sistema system;

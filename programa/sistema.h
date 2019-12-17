@@ -4,6 +4,13 @@
 #include "pacientes.h"
 #include <list>
 
+/*
+Recoge la clase sistema con todas sus funciones, en este caso la clase sistema se 
+podria conocer como la clase mas externa, ya que es la que acude a todas las demas.
+
+En esta clase se recojen las funciones clave o externas "Las que se muestran al usuario" y algunas subfunciones.
+*/
+
 class Sistema
 {
     private:
