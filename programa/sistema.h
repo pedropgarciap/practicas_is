@@ -18,10 +18,9 @@ class Sistema
         inline list <Paciente> getPacientes(){return pacientes_;};
 
         bool comprobarExistenciaPaciente(string dni);
-        bool comprobarExistenciaPaciente(string nombre, string apellidos);
         int addPaciente();
 
-        void buscarPaciente(string nombre, string apellidos);
+        void buscarPaciente(string dni);
 
         Paciente * buscaPaciente(string dni);
         void modificarPaciente();
@@ -29,9 +28,15 @@ class Sistema
         void borrarPaciente();
 
         void leeFichero();
+        void leeTratamientos();
         void escribeFichero();
+        void escribeTratamientos();
 
         void mostrarPacientes();
+
+        void addTratamiento(Paciente & paciente);
+        void modificarTratamiento(Paciente & paciente);
+        void mostrarTratamiento(Paciente & paciente);
 
 };
 

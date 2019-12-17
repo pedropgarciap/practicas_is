@@ -1,6 +1,7 @@
 #include "pacientes.h"
 #include "sistema.h"
 #include "menus.h"
+#include "tratamientos.h"
 #include <iostream>
 #include <string>
 #include <locale.h>
@@ -18,9 +19,11 @@ Sistema::Sistema(){
     cout << endl;
 
     leeFichero();
+    leeTratamientos();
 
     Menu m;
     string nombre, apellidos;
+    string dni;
 
     int opcion = m.menuPrincipal();
 
@@ -45,12 +48,8 @@ Sistema::Sistema(){
 
             case 2:
 
-                cout << "Introduzca el nombre del paciente a buscar: ";
-                getline(cin, nombre);
-                cout << endl;
-
-                cout << "Introduzca los apellidos del paciente a buscar: ";
-                getline(cin, apellidos);
+                cout << "Introduzca el DNI del paciente a buscar: ";
+                getline(cin, dni);
                 cout << endl;
 
                 if (pacientes_.empty()){
@@ -61,7 +60,7 @@ Sistema::Sistema(){
                     break;
                 }
 
-                else if (!comprobarExistenciaPaciente(nombre, apellidos)){
+                else if (!comprobarExistenciaPaciente(dni)){
 
                     cout << "No existe dicho paciente en la base de datos." << endl;
 
@@ -69,23 +68,10 @@ Sistema::Sistema(){
                     break;
                 }
 
-                buscarPaciente(nombre, apellidos);
+                buscarPaciente(dni);
 
                 opcion = 0;
-                break;
-                
-                
-                /*cout << "Si desea buscar al paciente usando el DNI teclee 1, si desea buscarlo usando el nombre y " <<
-                "los apellidos teclee el 2." << endl;
-
-                if (opcion == 1 || opcion == 2){
-
-                    if (opcion == 1){
-
-                        buscarPacienteDNI();
-                    
-                    }
-                }*/
+                break;       
 
             case 3:
 
@@ -160,7 +146,7 @@ bool Sistema::comprobarExistenciaPaciente(string dni){
 }
 
 //comprueba gracias al nombre y a los apellidos si ese paciente ya existe en la lista de pacientes
-bool Sistema::comprobarExistenciaPaciente(string nombre, string apellidos){
+/*bool Sistema::comprobarExistenciaPaciente(string nombre, string apellidos){
 
     list <Paciente>::iterator i;
     
@@ -173,7 +159,7 @@ bool Sistema::comprobarExistenciaPaciente(string nombre, string apellidos){
     }
     
     return false;
-}
+}*/
 
 //devuelve -1 si no se puede agregar y 1 si ha sido agregado con exito
 int Sistema::addPaciente(){ 
@@ -220,7 +206,7 @@ int Sistema::addPaciente(){
         if (opcion == "S"){
 
             string day, month, year, direccionpostal, seguro;
-            int telefono;
+            unsigned long int telefono;
 
             cout << "Introduzca el dia de nacimiento del paciente: ";
             getline(cin, day);
@@ -291,14 +277,16 @@ int Sistema::addPaciente(){
 }
 
 //tras comprobar que el paciente existe en la lista itera la lista hasta encontrarlo y lo devuelve
-void Sistema::buscarPaciente(string nombre, string apellidos){
+void Sistema::buscarPaciente(string dni){
 
     list <Paciente>::iterator i;
 
     for (i = pacientes_.begin(); i != pacientes_.end(); i++)
     {
 
-        if ( (i->getNombre() == nombre) && (i->getApellidos() == apellidos) ){
+        if ( (i->getDNI() == dni)){
+
+            Menu m;
 
             cout << "\nDNI: " << i->getDNI() << endl;
             cout << "Nombre: " << i->getNombre() << endl;
@@ -307,6 +295,78 @@ void Sistema::buscarPaciente(string nombre, string apellidos){
             cout << "Direccion Postal: " << i->getDireccionPostal() << endl;
             cout << "Telefono: " << i->getTelefono() << endl;
             cout << "Seguro/Mutua: " <<  i->getSeguroMutua() << endl;
+
+            int opcion = m.submenuPaciente();
+
+            while(opcion != -1){
+
+                switch (opcion){
+
+                    case 0:
+
+                        opcion = m.submenuPaciente(); 
+
+                        break;
+
+                    case 1:
+
+                        opcion = m.submenuTratamientos();
+
+                        while(opcion != -1){
+
+                            switch (opcion){
+
+                                case 0:
+
+                                    opcion = m.submenuTratamientos(); 
+                                    break;
+
+                                case 1:
+
+                                    addTratamiento(*i);
+                                                                     
+                                    opcion = 0;    
+                                    break;
+
+                                case 2:
+
+                                    modificarTratamiento(*i);
+
+                                    opcion = 0;
+                                    break;
+
+                                case 3:
+
+                                    mostrarTratamiento(*i);
+
+                                    opcion = 0;
+                                    break;
+
+                                default:
+
+                                    cout << "La opcion elegida no es valida, prueba a elegir una opcion del menu." << endl;
+                            
+                                    opcion = 0;
+                                    break;
+                            }
+                        }             
+
+                        opcion = 0;    
+                        break;
+
+                    case 2:
+
+                        opcion = 0;
+                        break;
+                        
+                    default:
+
+                        cout << "La opcion elegida no es valida, prueba a elegir una opcion del menu." << endl;
+                
+                        opcion = 0;
+                        break;
+                }
+            }
         }
     }
 }
@@ -492,7 +552,28 @@ void Sistema::escribeFichero(){
     }
 
     salida.close();
+}
 
+void Sistema::escribeTratamientos(){
+
+        list <Paciente>::iterator i;
+
+        for (i = pacientes_.begin(); i != pacientes_.end(); i++){
+
+            ofstream salida2;
+            salida2.open(i->getDNI()+ "_tratamientos.txt");
+
+            list <Tratamiento> aux = i->getTratamientos();
+            list <Tratamiento>::iterator j;
+
+            for (j = aux.begin(); j != aux.end(); j++){
+            
+                salida2 << j->getDosis() << "," << j->getDuracion() << "," << j->getMedicacion() << ","
+                << j->getRegularidad() << "," << j->getEstado() << "\n";
+            }
+        
+            salida2.close();
+        }        
 }
 
 void Sistema::borrarPaciente(){
@@ -580,7 +661,7 @@ void Sistema::leeFichero(){
     
         auxiliar.setFechaNacimiento(fechanacimiento);
         auxiliar.setDireccionPostal(direccionpostal);
-        auxiliar.setTelefono(atoi(telefono));
+        auxiliar.setTelefono(atol(telefono));
         auxiliar.setSeguroMutua(seguromutua);
 
         pacientes_.push_back(auxiliar);
@@ -589,6 +670,38 @@ void Sistema::leeFichero(){
     entrada.close();
 }
 
+void Sistema::leeTratamientos(){
+
+    list <Paciente>::iterator i;
+
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++){
+
+        ifstream entrada;
+
+        entrada.open(i->getDNI() + "_tratamientos.txt");
+
+        char dosis [50];
+        char duracion [50];
+        char medicacion [50];
+        char regularidad [50];
+        char estado [50];
+
+        while (entrada.getline(dosis, 256, ',')){
+
+            entrada.getline(duracion, 256, ',');
+            entrada.getline(medicacion, 256, ',');
+            entrada.getline(regularidad, 256, ',');
+            entrada.getline(estado, 256, '\n');
+
+            Tratamiento auxiliar(dosis, duracion, medicacion, regularidad);
+            auxiliar.setEstado(stoi(estado));
+
+            i->setTratamientosAtras(auxiliar);
+        }
+        
+        entrada.close(); 
+    }
+}
 
 //muestra los datos de todos los pacientes que haya en ese momento en la lista
 void Sistema::mostrarPacientes(){
@@ -607,5 +720,181 @@ void Sistema::mostrarPacientes(){
     }
     
     cout << "\nPACIENTES MOSTRADOS CON EXITO." << endl;
+}
+
+void Sistema::addTratamiento(Paciente & paciente){
+
+    string duracion, medicacion, dosis, regularidad;
+    
+
+    cout << "Introduzca la duracion del tratamiento a añadir: ";
+    getline(cin, duracion);
+    cout << endl;
+
+    cout << "Introduzca la medicación del tratamiento a añadir: ";
+    getline(cin, medicacion);
+    cout << endl;
+
+    cout << "Introduzca la dosis del tratamiento a añadir: ";
+    getline(cin, dosis);
+    cout << endl;
+
+    cout << "Introduzca por ultimo la regularidad del tratamiento a añadir: ";
+    getline(cin, regularidad);
+    cout << endl;
+
+    Tratamiento aux(duracion, medicacion, dosis, regularidad);
+    aux.setEstado(true);
+
+    list <Tratamiento>::iterator i;
+    list <Tratamiento> & auxiliar = paciente.getTratamientos();
+
+    for (i = auxiliar.begin(); i != auxiliar.end(); i++)
+    {
+        i->setEstado(false);
+    }
+
+    paciente.setTratamientos(aux);
+
+    escribeTratamientos();
+}
+
+void Sistema::modificarTratamiento(Paciente &paciente){
+
+    if ((paciente.getTratamientos()).empty()){
+
+        cout << "Este paciente no tiene tratamientos que modificar." << endl;
+    }
+
+    else{
+        
+        Menu m;
+
+        string duracion, medicacion, dosis, regularidad;
+
+        list <Tratamiento>::iterator i;
+        list <Tratamiento> auxiliar = paciente.getTratamientos();
+
+        i = auxiliar.begin();
+
+        dosis = i->getDosis();
+        duracion = i->getDuracion();
+        medicacion = i->getMedicacion();
+        regularidad = i->getRegularidad();
+
+        int opcion = m.submenuModificarTratamientos();
+
+        while(opcion != -1){
+
+            switch (opcion){
+                
+                case 0:
+
+                    opcion = m.submenuModificarTratamientos();
+                    
+                    break;
+
+                case 1:
+
+                    cout << "Introduzca la duración para modificarla: ";
+                    getline(cin, duracion);
+                    cout << endl;
+
+                    opcion = 0;
+                    break;
+                    
+                case 2:
+
+                    cout << "Introduzca la medicación para modificarla: ";
+                    getline(cin, medicacion);
+                    cout << endl;
+
+                    opcion = 0;
+                    break;
+                            
+                case 3:
+
+                    cout << "Introduzca la dosis para modificarla: ";
+                    getline(cin, dosis);
+                    cout << endl;
+
+                    opcion = 0;
+                    break;
+
+                case 4:
+
+                    cout << "Introduzca la regularidad para modificarla: ";
+                    getline(cin, regularidad);
+                    cout << endl;
+
+                    opcion = 0;
+                    break;  
+
+                default:
+
+                    cout << "Opción incorrecta, prueba a elegir una opción del menú." << endl;
+
+                    opcion = 0;
+                    break;
+            }
+        }
+
+        Tratamiento aux(duracion, medicacion, dosis, regularidad);
+        aux.setEstado(true);
+
+        list <Tratamiento>::iterator j;
+        list <Tratamiento> & auxiliar2 = paciente.getTratamientos();
+
+        for (j = auxiliar2.begin(); j != auxiliar2.end(); j++){
+                
+            j->setEstado(false);
+        }
+
+        paciente.setTratamientos(aux);
+
+        escribeTratamientos();
+    }
+}
+    
+
+    
+
+void Sistema::mostrarTratamiento(Paciente & paciente){
+
+    if ((paciente.getTratamientos()).empty()){
+
+        cout << "Este paciente no tiene tratamientos que modificar." << endl;
+    }
+
+    else{
+
+        list <Tratamiento>::iterator i;
+        list <Tratamiento> aux = paciente.getTratamientos();
+
+        string booleano;    
+
+        for (i = aux.begin(); i != aux.end(); i++){
+
+            cout << "\nDosis: " << i->getDosis() << endl;
+            cout << "Duración: " << i->getDuracion() << endl;
+            cout << "Medicación: " << i->getMedicacion() << endl;
+            cout << "Regularidad: " << i->getRegularidad() << endl;
+
+            if (i->getEstado() == true){
+
+            booleano = "Tratamiento Vigente";
+            }
+
+            else if(i->getEstado() == false) {
+                
+                booleano = "Tratamiento Anterior";
+            }
+
+            cout << "Estado: " << booleano << endl;
+
+        }
+        
+        cout << "\nTRATAMIENTOS MOSTRADOS CON EXITO." << endl;
+    }
 }
 

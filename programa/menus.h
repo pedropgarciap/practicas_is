@@ -12,6 +12,10 @@ public:
 
     int menuPrincipal();
     int submenuModificar();
+    int submenuPaciente();
+    int submenuTratamientos();
+    int submenuHistorial();
+    int submenuModificarTratamientos();
         
 };
 
