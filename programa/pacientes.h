@@ -4,6 +4,7 @@
 #include <string>
 #include <list>
 #include "tratamientos.h"
+#include "citas.h"
 
 /*
 Recoge la clase paciente con todas sus funciones propias como el 
@@ -25,6 +26,7 @@ unsigned long int telefono_;
 string seguromutua_;
 
 list <Tratamiento> tratamientos_;
+list <Cita> citas_;
 
 public:
 
@@ -41,6 +43,7 @@ public:
     inline unsigned long int getTelefono(){return telefono_;};
     inline string getSeguroMutua(){return seguromutua_;};
     inline list <Tratamiento> & getTratamientos(){return tratamientos_;};
+    inline list <Cita> & getCitas(){return citas_;};
 
     //MODIFICADORES
     inline void setDNI(string dni){dni_ = dni;}; 
@@ -53,6 +56,7 @@ public:
     inline void setSeguroMutua(string seguromutua){seguromutua_ = seguromutua;};    
     inline void setTratamientos(Tratamiento tratamiento){tratamientos_.push_front(tratamiento);};
     inline void setTratamientosAtras(Tratamiento tratamiento){tratamientos_.push_back(tratamiento);};
+    inline void setCitas(Cita cita){citas_.push_back(cita);};
 };
 
 #endif

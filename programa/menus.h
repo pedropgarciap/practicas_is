@@ -20,6 +20,7 @@ public:
     int submenuPaciente();
     int submenuTratamientos();
     int submenuHistorial();
+    int submenuCitas();
     int submenuModificarTratamientos();
         
 };

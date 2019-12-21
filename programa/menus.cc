@@ -21,6 +21,7 @@ int Menu::menuPrincipal(){
     cout << "[3] -> Modificar paciente por dni.\n";
     cout << "[4] -> Mostrar todos los pacientes de la base de datos.\n";
     cout << "[5] -> Borrar paciente por dni.\n";
+    cout << "[6] -> Ver citas del dia de hoy.\n";
     cout << "\n";
 
     cout << "[-1] -> SALIR.\n";
@@ -67,6 +68,7 @@ int Menu::submenuPaciente(){
     cout << "··········································\n";
     cout << "[1] -> Apartado de Tratamientos.\n";
     cout << "[2] -> Apartado de Historial.\n";
+    cout << "[3] -> Apartado de Citas.\n";
     cout << "\n";
 
     cout << "[-1] -> SALIR.\n";
@@ -100,6 +102,28 @@ int Menu::submenuTratamientos(){
 
     return opcion;
 }
+
+int Menu::submenuCitas(){
+
+    int opcion;
+
+    cout << "\nIntroduzca una de las siguientes opciones:\n";
+    cout << "··········································\n";
+    cout << "[1] -> Añadir cita.\n";
+    cout << "[2] -> Modificar cita.\n";
+    cout << "[3] -> Ver citas.\n";
+    cout << "\n";
+
+    cout << "[-1] -> SALIR.\n";
+    cout << "\n";
+    cout << "Su opcion: ";
+    cin >> opcion;
+    cout << endl;
+    getchar();
+
+    return opcion;
+}
+
 
 //Submenu de modificacion del tratamiento de un paciente
 int Menu::submenuModificarTratamientos(){
