@@ -3,7 +3,8 @@
 
 using namespace std;
 
-bool Cita::setDay(int day){
+//Comprueba que el dia introducido se encuentra entre los valores permitidos
+bool Cita::setDay(int day){ 
             
     if ( (day > 31) || (day < 1)){
 
@@ -17,6 +18,7 @@ bool Cita::setDay(int day){
     }
 }
 
+//Comprueba que el mes introducido se encuentra entre los valores permitidos
 bool Cita::setMonth(int month){
             
     if ( (month > 12) || (month < 1)){
@@ -31,6 +33,7 @@ bool Cita::setMonth(int month){
     }
 }
 
+//Comprueba que el año introducido se encuentra entre los valores permitidos
 bool Cita::setYear(int year){
 
     if (year < 0){
@@ -45,6 +48,7 @@ bool Cita::setYear(int year){
     }
 }
 
+//Comprueba que la hora introducida se encuentra entre los valores permitidos
 bool Cita::setHora(int hora){
 
     if ( (hora > 24) || (hora < 0)){
@@ -59,6 +63,7 @@ bool Cita::setHora(int hora){
     }
 }
 
+//Comprueba que los minutos introducidos se encuentran entre los limites permitidos
 bool Cita::setMinutos(int minutos){
 
     if ( (minutos > 59) || (minutos < 0)){

@@ -30,31 +30,31 @@ class Sistema
         inline list <Paciente> getPacientes(){return pacientes_;};
         inline list <Cita> getCitas(){return citas_;}
 
-        bool comprobarExistenciaPaciente(string dni);
-        int addPaciente();
+        bool comprobarExistenciaPaciente(string dni); //Subfuncion
+        int addPaciente(); //Funcion del menu
 
-        void buscarPaciente(string dni);
+        void buscarPaciente(string dni); //Funcion del menu
 
-        Paciente * buscaPaciente(string dni);
-        void modificarPaciente();
+        Paciente * buscaPaciente(string dni); //Subfuncion
+        void modificarPaciente(); //Funcion del menu
 
-        void borrarPaciente();
+        void borrarPaciente(); //Funcion del menu
 
-        void leeFichero();
-        void leeTratamientos();
-        void escribeFichero();
-        void escribeTratamientos();
+        void leeFichero(); //Subfuncion
+        void leeTratamientos(); //Subfuncion
+        void escribeFichero(); //Subfuncion
+        void escribeTratamientos(); //Subfuncion
 
-        void mostrarPacientes();
+        void mostrarPacientes(); //Funcion del menu
 
-        void addTratamiento(Paciente & paciente);
-        void modificarTratamiento(Paciente & paciente);
-        void mostrarTratamiento(Paciente & paciente);
+        void addTratamiento(Paciente & paciente); //Funcion del menu
+        void modificarTratamiento(Paciente & paciente); //Funcion del menu
+        void mostrarTratamiento(Paciente & paciente); //Funcion del menu
 
-        bool comprobarCita(int day, int month, int year, int hora, int minutos);
-        void verCitas(Paciente & paciente);
-        void addCita(Paciente & paciente);
-        void verCitasHoy();
+        bool comprobarCita(int day, int month, int year, int hora, int minutos); //Subfuncion
+        void verCitas(Paciente & paciente); //Funcion del menu
+        void addCita(Paciente & paciente); //Funcion del menu
+        void verCitasHoy(); //Funcion del menu
 };
 
 

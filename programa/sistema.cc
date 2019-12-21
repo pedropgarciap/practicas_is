@@ -219,29 +219,29 @@ int Sistema::addPaciente(){
             string day, month, year, direccionpostal, seguro;
             unsigned long int telefono;
 
-            cout << "Introduzca el dia de nacimiento del paciente: ";
+            cout << "Dia de nacimiento del paciente: ";
             getline(cin, day);
             cout << endl;
-            cout << "Introduzca ahora el mes de nacimiento del paciente: ";
+            cout << "Mes de nacimiento del paciente: ";
             getline(cin, month);
             cout << endl;
-            cout << "Introduzca por ultimo el año de nacimiento del paciente: ";
+            cout << "Año de nacimiento del paciente: ";
             getline(cin, year);
             cout << endl;
             auxiliar.setFechaNacimiento(day, month, year);
             
-            cout << "Introduzca ahora la direccion postal del paciente: ";
+            cout << "Direccion postal del paciente (Sin introduzca comas): ";
             getline(cin, direccionpostal);
             cout << endl;
             auxiliar.setDireccionPostal(direccionpostal);
 
-            cout << "Introduzca ahora el telefono del paciente: ";
+            cout << "Telefono del paciente: ";
             cin >> telefono;
             cout << endl;
             getchar();
             auxiliar.setTelefono(telefono);
 
-            cout << "Por ultimo introduzca Si, si el paciente asiste por el seguro o en su defecto No, si este asiste pagando: ";
+            cout << "Por ultimo introduzca Si, si el paciente asiste por el seguro, o No, si este asiste pagando: ";
             getline(cin, seguro);
             cout << endl;
             while (opcion != "Salir"){
@@ -253,7 +253,7 @@ int Sistema::addPaciente(){
 
                 else{
 
-                    cout << "Parametro incorrecto. Pruebe a introducir Si, si el paciente asiste por el seguro o en su defecto No, si este asiste pagando: ";
+                    cout << "Parametro incorrecto. Pruebe a introducir Si, si el paciente asiste por el seguro, o No, si este asiste pagando: ";
                     getline(cin, seguro);
                     cout << endl;
                 }
@@ -962,6 +962,7 @@ void Sistema::mostrarTratamiento(Paciente & paciente){
     }
 }
 
+//Comprueba que la fecha y hora de cita que se introduce no exista ya en la base de datos
 bool Sistema::comprobarCita(int day, int month, int year, int hora, int minutos){
 
             list <Cita>::iterator i;
@@ -977,6 +978,7 @@ bool Sistema::comprobarCita(int day, int month, int year, int hora, int minutos)
             return false;
 }
 
+//Muestra las citas de un paciente pedido
 void Sistema::verCitas(Paciente & paciente){
 
     list <Cita> aux = paciente.getCitas();
@@ -1021,6 +1023,7 @@ void Sistema::verCitas(Paciente & paciente){
             } 
 }
 
+// Añade una cita pidiendo al usuario los datos de esta
 void Sistema::addCita(Paciente & paciente){
 
             Cita c;
@@ -1112,7 +1115,8 @@ void Sistema::addCita(Paciente & paciente){
             cout << "Cita introducida con éxito." << endl;
         }
 
-void Sistema::verCitasHoy(){
+//Muestra las citas con fecha igual a la que marca el ordenador
+void Sistema::verCitasHoy(){ 
 
     list <Cita>::iterator i;
 

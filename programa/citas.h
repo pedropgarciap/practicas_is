@@ -7,6 +7,11 @@
 #include <locale.h>
 #include <string>
 
+/*
+Recoge la clase citas con todas sus funciones propias como el 
+constructor y las comunmente llamadas funciones get y set.
+*/
+
 using namespace std;
 
 class Cita{
@@ -31,7 +36,7 @@ class Cita{
 
         }
 
-        //~Cita();
+        //~Cita(); No es necesario
 
         inline int getDay(){return day_;}
         inline int getMonth(){return month_;}
