@@ -25,9 +25,7 @@ class Cita{
         int hora_;
         int minutos_;
 
-        string dnipaciente_;
-        string motivo_;
-        
+        string dnipaciente_;        
 
     public:
 
@@ -44,7 +42,6 @@ class Cita{
         inline int getHora(){return hora_;}
         inline int getMinutos(){return minutos_;}
         inline string getDniPaciente(){return dnipaciente_;}
-        inline string getMotivo(){return motivo_;}
 
         bool setDay(int day);
         bool setMonth(int month);
@@ -52,7 +49,6 @@ class Cita{
         bool setHora(int hora);
         bool setMinutos(int minutos);
         inline void setDniPaciente(string dnipaciente){dnipaciente_ = dnipaciente;};
-        inline void setMotivo(string motivo){motivo_ = motivo;};
 
 };
 

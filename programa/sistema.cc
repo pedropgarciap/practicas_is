@@ -24,6 +24,7 @@ Sistema::Sistema(){
 
     leeFichero();
     leeTratamientos();
+    leeCitas();
 
     Menu m;
     string nombre, apellidos;
@@ -392,12 +393,19 @@ void Sistema::buscarPaciente(string dni){
 
                                 case 2:
 
-                                    cout << "Aqui ira modificar." << endl;
+                                    modificarCita(*i);
 
                                     opcion = 0;
                                     break;
 
                                 case 3:
+
+                                    borrarCita(*i);
+
+                                    opcion = 0;
+                                    break;
+
+                                case 4:
 
                                     verCitas(*i);
 
@@ -615,24 +623,62 @@ void Sistema::escribeFichero(){
 //Vuelca al fichero pacientes.txt el nuevo tratamiento
 void Sistema::escribeTratamientos(){
 
-        list <Paciente>::iterator i;
+    list <Paciente>::iterator i;
 
-        for (i = pacientes_.begin(); i != pacientes_.end(); i++){
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++){
 
-            ofstream salida2;
-            salida2.open(i->getDNI()+ "_tratamientos.txt");
+        ofstream salida2;
+        salida2.open(i->getDNI()+ "_tratamientos.txt");
 
-            list <Tratamiento> aux = i->getTratamientos();
-            list <Tratamiento>::iterator j;
+        list <Tratamiento> aux = i->getTratamientos();
+        list <Tratamiento>::iterator j;
 
-            for (j = aux.begin(); j != aux.end(); j++){
-            
-                salida2 << j->getDosis() << "," << j->getDuracion() << "," << j->getMedicacion() << ","
-                << j->getRegularidad() << "," << j->getEstado() << "\n";
-            }
+        for (j = aux.begin(); j != aux.end(); j++){
         
-            salida2.close();
-        }        
+            salida2 << j->getDosis() << "," << j->getDuracion() << "," << j->getMedicacion() << ","
+            << j->getRegularidad() << "," << j->getEstado() << "\n";
+        }
+    
+        salida2.close();
+    }        
+}
+
+void Sistema::escribeCitas(){
+
+    ofstream salida;
+
+    salida.open("citas.txt");
+
+    list <Cita> aux = citas_;
+    list <Cita>::iterator j;
+
+    for (j = aux.begin(); j != aux.end(); j++){
+    
+        salida << j->getYear() << "," << j->getMonth() << "," << j->getDay() << ","
+        << j->getHora() << "," << j->getMinutos() << "," << j->getDniPaciente() << "\n";
+    }
+
+    salida.close();
+
+
+    list <Paciente>::iterator i;
+
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++){
+
+        ofstream salida2;
+        salida2.open(i->getDNI()+ "_citas.txt");
+
+        list <Cita> aux2 = i->getCitas();
+        list <Cita>::iterator j;
+
+        for (j = aux2.begin(); j != aux2.end(); j++){
+        
+            salida2 << j->getYear() << "," << j->getMonth() << "," << j->getDay() << ","
+            << j->getHora() << "," << j->getMinutos() << "\n";
+        }
+    
+        salida2.close();
+    }
 }
 
 //Elimina un paciente de la base de datos.
@@ -686,7 +732,6 @@ void Sistema::borrarPaciente(){
         }
 
         escribeFichero();
-        leeFichero();
     }
 }
 
@@ -762,6 +807,78 @@ void Sistema::leeTratamientos(){
         }
         
         entrada.close(); 
+    }
+}
+
+void Sistema::leeCitas(){
+
+    ifstream entrada;
+
+    entrada.open("citas.txt");
+
+    char year [50];
+    char month [50];
+    char day [50];
+    char hora [50];
+    char minutos [50];
+    char dni [50];
+
+    while (entrada.getline(year, 256, ',')){
+
+        entrada.getline(month, 256, ',');
+        entrada.getline(day, 256, ',');
+        entrada.getline(hora, 256, ',');
+        entrada.getline(minutos, 256, ',');
+        entrada.getline(dni, 256, '\n');
+
+        Cita auxiliar;
+
+        auxiliar.setYear(atoi(year));
+        auxiliar.setMonth(atoi(month));
+        auxiliar.setDay(atoi(day));
+        auxiliar.setHora(atoi(hora));
+        auxiliar.setMinutos(atoi(minutos));
+        auxiliar.setDniPaciente(dni);
+
+        citas_.push_back(auxiliar);
+    }
+    
+    entrada.close(); 
+
+    list <Paciente>::iterator i;
+
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++){
+
+        ifstream entrada2;
+
+        entrada2.open(i->getDNI() + "_citas.txt");
+
+        char year2 [50];
+        char month2 [50];
+        char day2 [50];
+        char hora2 [50];
+        char minutos2 [50];
+
+        while (entrada2.getline(year2, 256, ',')){
+
+            entrada2.getline(month2, 256, ',');
+            entrada2.getline(day2, 256, ',');
+            entrada2.getline(hora2, 256, ',');
+            entrada2.getline(minutos2, 256, '\n');
+
+            Cita auxiliar2;
+
+            auxiliar2.setYear(atoi(year2));
+            auxiliar2.setMonth(atoi(month2));
+            auxiliar2.setDay(atoi(day2));
+            auxiliar2.setHora(atoi(hora2));
+            auxiliar2.setMinutos(atoi(minutos2));
+            auxiliar2.setDniPaciente(i->getDNI());
+
+            i->setCitas(auxiliar2);
+        }
+        
+        entrada2.close(); 
     }
 }
 
@@ -1014,11 +1131,6 @@ void Sistema::verCitas(Paciente & paciente){
 
                     cout << endl;
                     cout << endl;
-
-                    cout << i->getMotivo();
-
-                    cout << endl;
-                    cout << endl;
                 }
             } 
 }
@@ -1026,130 +1138,376 @@ void Sistema::verCitas(Paciente & paciente){
 // Añade una cita pidiendo al usuario los datos de esta
 void Sistema::addCita(Paciente & paciente){
 
-            Cita c;
-            int day, month, year, hora, minutos;
-            string motivo;
+    Cita c;
+    int day, month, year, hora, minutos;
+    string motivo;
+
+    cout << "Introduce el numero del año cuando quieres programar la cita: ";
+    cin >> year;
+    //getchar();
+    cout << endl;
+
+    cout << "Introduce el numero del mes cuando quieres programar la cita: ";
+    cin >> month;
+    //getchar();
+    cout << endl;
+
+    cout << "Introduce el numero del dia del mes cuando quieres programar la cita: ";
+    cin >> day;
+    //getchar();
+    cout << endl;                
+
+    cout << "Introduce la hora a la que quieres programar la cita: ";
+    cin >> hora;
+    //getchar();
+    cout << endl;
+
+    cout << "Introduce los minutos de la hora en la que quieres programar la cita: ";
+    cin >> minutos;
+    //getchar();
+    cout << endl;               
+    
+    while ( (c.setYear(year) == false) || (c.setMonth(month) == false) || (c.setDay(day) == false) || (c.setHora(hora) == false) 
+    || (c.setMinutos(minutos) == false) || (comprobarCita(day, month, year, hora, minutos) == true ) || ((year%4 != 0) && (month==2) && (day == 29))
+    || (((month==4) || (month==6) || (month==9) || (month==11)) && (day == 31)) || ((month == 2) && (day == 30))){
+
+        cout << "Debido a los siguientes errores tendras que volver a añadir la cita: \n" << endl;
+
+        if ((c.setYear(year) == false) ){cout << "El año ha sido introducido en un rango incorrecto. (Años positivos)" << endl;}
+        if ((c.setMonth(month) == false) ){cout << "El mes ha sido introducido en un rango incorrecto. (De 1 a 12)" << endl;}
+        if ((c.setDay(day) == false) ){cout << "El dia ha sido introducido en un rango incorrecto. (De 1 a 31)" << endl;}
+        if ((c.setHora(hora) == false) ){cout << "La hora ha sido introducida en un rango incorrecto. (De 0 a 23)" << endl;}
+        if ((c.setMinutos(minutos) == false) ){cout << "Los minutos han sido introducidos en un rango incorrecto. (De 0 a 59)" << endl;}
+        if ((year%4 != 0) && (month==2) && (day == 29)){ cout << "No hay dia 29 en los meses de febrero de los años no-bisiestos." << endl;}
+        if (((month==4) || (month==6) || (month==9) || (month==11)) && (day == 31)){cout << "No hay dia 31 en los meses de Febrero, Abril, Junio, Septiembre y Octubre."
+        << endl;}
+        if ((month == 2) && (day == 30)){cout << "No hay dia 30 en los meses de Febrero." << endl;}
+        if ((comprobarCita(day, month, year, hora, minutos) == true )){cout << "Ya hay una cita programada en la misma fecha y hora." << endl;} 
+
+        cout << endl;
+
+        cout << "Introduce el numero del año cuando quieres programar la cita: ";
+        cin >> year;
+        //getchar();
+        cout << endl;
+
+        cout << "Introduce el numero del mes cuando quieres programar la cita: ";
+        cin >> month;
+        //getchar();
+        cout << endl;
+
+        cout << "Introduce el numero del dia del mes cuando quieres programar la cita: ";
+        cin >> day;
+        //getchar();
+        cout << endl;
+
+        cout << "Introduce la hora a la que quieres programar la cita: ";
+        cin >> hora;
+        //getchar();
+        cout << endl;
+
+        cout << "Introduce los minutos de la hora en la que quieres programar la cita: ";
+        cin >> minutos;
+        //getchar();
+        cout << endl;
+    }
+
+    c.setDniPaciente(paciente.getDNI());
+
+    citas_.push_front(c);
+    paciente.setCitas(c);
+
+    cout << "Cita introducida con éxito." << endl;
+
+    escribeCitas();
+}
+
+bool Sistema::buscaCita(Paciente paciente, int day, int month, int year, int hora, int minutos){
+
+    list <Cita>::iterator i;
+    list <Cita> aux = paciente.getCitas();
+
+        for (i = aux.begin(); i != aux.end(); i++){
+
+            if ((i->getYear() == year) && (i->getMonth() == month) && (i->getDay() == day) && 
+            (i->getHora() == hora) && (i->getMinutos() == minutos)){
+
+                return true;
+            }
+        }
+
+    return false;
+}
+
+void Sistema::modificarCita(Paciente & paciente){
+
+    list <Cita> & aux = paciente.getCitas();
+
+    if (aux.empty()){
+
+        cout << "El paciente no tiene citas que modificar." << endl;
+    }  
+
+    int day, month, year, hora, minutos;
+
+    cout << "Introduce el año de la cita que quieres modificar: ";
+    cin >> year;
+    //getchar();
+    cout << endl;
+
+    cout << "Introduce el mes de la cita que quieres modificar: ";
+    cin >> month;
+    //getchar();
+    cout << endl;
+
+    cout << "Introduce el dia de la cita que quieres modificar: ";
+    cin >> day;    
+    //getchar();
+    cout << endl;        
+
+    cout << "Introduce la hora de la cita que quieres modificar: ";
+    cin >> hora;
+    //getchar();
+    cout << endl;
+
+    cout << "Introduce los minutos de la cita que quieres modificar: ";
+    cin >> minutos;
+    //getchar();
+    cout << endl;
+
+    if (!buscaCita(paciente, day, month, year, hora, minutos)){
+
+        cout << "No existe dicha cita en la base de datos." << endl;
+    }
+
+    else{
+
+        Cita c;
+        int day2, month2, year2, hora2, minutos2;
+
+        cout << "\nModificación de la cita:\n";
+        cout << "··········································\n";
+
+        cout << "Introduce el numero del año cuando quieres programar la cita: ";
+        cin >> year2;
+        //getchar();
+        cout << endl;
+
+        cout << "Introduce el numero del mes cuando quieres programar la cita: ";
+        cin >> month2;
+        //getchar();
+        cout << endl;
+
+        cout << "Introduce el numero del dia del mes cuando quieres programar la cita: ";
+        cin >> day2;
+        //getchar();
+        cout << endl;                
+
+        cout << "Introduce la hora a la que quieres programar la cita: ";
+        cin >> hora2;
+        //getchar();
+        cout << endl;
+
+        cout << "Introduce los minutos de la hora en la que quieres programar la cita: ";
+        cin >> minutos2;
+        //getchar();
+        cout << endl;               
+        
+        while ( (c.setYear(year2) == false) || (c.setMonth(month2) == false) || (c.setDay(day2) == false) || (c.setHora(hora2) == false) 
+        || (c.setMinutos(minutos2) == false) || (comprobarCita(day2, month2, year2, hora2, minutos2) == true ) || (((year2)%4 != 0) && (month2==2) && (day2 == 29))
+        || (((month2==4) || (month2==6) || (month2==9) || (month2==11)) && (day2 == 31)) || ((month2 == 2) && (day2 == 30))){
+
+            cout << "Debido a los siguientes errores tendras que volver a modificar la cita: \n" << endl;
+
+            if ((c.setYear(year2) == false) ){cout << "El año ha sido introducido en un rango incorrecto. (Años positivos)" << endl;}
+            if ((c.setMonth(month2) == false) ){cout << "El mes ha sido introducido en un rango incorrecto. (De 1 a 12)" << endl;}
+            if ((c.setDay(day2) == false) ){cout << "El dia ha sido introducido en un rango incorrecto. (De 1 a 31)" << endl;}
+            if ((c.setHora(hora2) == false) ){cout << "La hora ha sido introducida en un rango incorrecto. (De 0 a 23)" << endl;}
+            if ((c.setMinutos(minutos2) == false) ){cout << "Los minutos han sido introducidos en un rango incorrecto. (De 0 a 59)" << endl;}
+            if (((year2)%4 != 0) && (month2==2) && (day2 == 29)){ cout << "No hay dia 29 en los meses de febrero de los años no-bisiestos." << endl;}
+            if (((month2==4) || (month2==6) || (month2==9) || (month2==11)) && (day2 == 31)){cout << "No hay dia 31 en los meses de Febrero, Abril, Junio, Septiembre y Octubre."
+            << endl;}
+            if ((month2 == 2) && (day2 == 30)){cout << "No hay dia 30 en los meses de Febrero." << endl;}
+            if ((comprobarCita(day2, month2, year2, hora2, minutos2) == true )){cout << "Ya hay una cita programada en la misma fecha y hora." << endl;} 
+
+            cout << endl;
 
             cout << "Introduce el numero del año cuando quieres programar la cita: ";
-            cin >> year;
+            cin >> year2;
             //getchar();
             cout << endl;
 
             cout << "Introduce el numero del mes cuando quieres programar la cita: ";
-            cin >> month;
+            cin >> month2;
             //getchar();
             cout << endl;
 
             cout << "Introduce el numero del dia del mes cuando quieres programar la cita: ";
-            cin >> day;
+            cin >> day2;
             //getchar();
-            cout << endl;                
+            cout << endl;
 
             cout << "Introduce la hora a la que quieres programar la cita: ";
-            cin >> hora;
+            cin >> hora2;
             //getchar();
             cout << endl;
 
             cout << "Introduce los minutos de la hora en la que quieres programar la cita: ";
-            cin >> minutos;
-            getchar();
-            cout << endl;               
-            
-            while ( (c.setYear(year) == false) || (c.setMonth(month) == false) || (c.setDay(day) == false) || (c.setHora(hora) == false) 
-            || (c.setMinutos(minutos) == false) || (comprobarCita(day, month, year, hora, minutos) == true ) || ((year%4 != 0) && (month==2) && (day == 29))
-            || (((month==4) || (month==6) || (month==9) || (month==11)) && (day == 31)) || ((month == 2) && (day == 30))){
-
-                cout << "Debido a los siguientes errores tendras que volver a añadir la cita: \n" << endl;
-
-                if ((c.setYear(year) == false) ){cout << "El año ha sido introducido en un rango incorrecto. (Años positivos)" << endl;}
-                if ((c.setMonth(month) == false) ){cout << "El mes ha sido introducido en un rango incorrecto. (De 1 a 12)" << endl;}
-                if ((c.setDay(day) == false) ){cout << "El dia ha sido introducido en un rango incorrecto. (De 1 a 31)" << endl;}
-                if ((c.setHora(hora) == false) ){cout << "El año ha sido introducido en un rango incorrecto. (De)" << endl;}
-                if ((c.setMinutos(minutos) == false) ){cout << "El año ha sido introducido en un rango incorrecto." << endl;}
-                if ((year%4 != 0) && (month==2) && (day == 29)){ cout << "No hay dia 29 en los meses de febrero de los años no-bisiestos." << endl;}
-                if (((month==4) || (month==6) || (month==9) || (month==11)) && (day == 31)){cout << "No hay dia 31 en los meses de Febrero, Abril, Junio, Septiembre y Octubre."
-                << endl;}
-                if ((month == 2) && (day == 30)){cout << "No hay dia 30 en los meses de Febrero." << endl;}
-                if ((comprobarCita(day, month, year, hora, minutos) == true )){cout << "Ya hay una cita programada en la misma fecha y hora." << endl;} 
-
-                cout << endl;
-
-                cout << "Introduce el numero del año cuando quieres programar la cita: ";
-                cin >> year;
-                //getchar();
-                cout << endl;
-
-                cout << "Introduce el numero del mes cuando quieres programar la cita: ";
-                cin >> month;
-                //getchar();
-                cout << endl;
-
-                cout << "Introduce el numero del dia del mes cuando quieres programar la cita: ";
-                cin >> day;
-                //getchar();
-                cout << endl;
-
-                cout << "Introduce la hora a la que quieres programar la cita: ";
-                cin >> hora;
-                //getchar();
-                cout << endl;
-
-                cout << "Introduce los minutos de la hora en la que quieres programar la cita: ";
-                cin >> minutos;
-                //getchar();
-                cout << endl;
-            }
-
-            cout << "Introduce ahora el motivo de la visita: " << endl;
-            getline(cin, motivo);
+            cin >> minutos2;
             //getchar();
             cout << endl;
-
-            c.setMotivo(motivo);
-
-            c.setDniPaciente(paciente.getDNI());
-
-            citas_.push_front(c);
-            paciente.setCitas(c);
-
-            cout << "Cita introducida con éxito." << endl;
         }
+
+        c.setDniPaciente(paciente.getDNI());
+
+        list <Cita>::iterator i;
+
+        for (i = aux.begin(); i != aux.end(); i++){
+
+            if ((i->getYear() == year) && (i->getMonth() == month) && (i->getDay() == day) && 
+            (i->getHora() == hora) && (i->getMinutos() == minutos)){
+
+                i->setYear(year2);
+                i->setMonth(month2);
+                i->setDay(day2);
+                i->setHora(hora2);
+                i->setMinutos(minutos2);
+                i->setDniPaciente(paciente.getDNI());
+            }
+        }
+
+        list <Cita>::iterator j;
+
+        for (j = citas_.begin(); j != citas_.end(); j++){   
+            
+            if ((j->getYear() == year) && (j->getMonth() == month) && (j->getDay() == day) && 
+            (j->getHora() == hora) && (j->getMinutos() == minutos)){
+
+                j->setYear(year2);
+                j->setMonth(month2);
+                j->setDay(day2);
+                j->setHora(hora2);
+                j->setMinutos(minutos2);
+                j->setDniPaciente(paciente.getDNI());
+            }
+        }
+
+        cout << "Cita modificada con éxito." << endl;
+    }
+
+    escribeCitas();
+}
+
+void Sistema::borrarCita(Paciente & paciente){
+
+    list <Cita> & aux = paciente.getCitas();
+
+    if (aux.empty()){
+
+        cout << "El paciente no tiene citas que borrar." << endl;
+    }  
+
+    int day, month, year, hora, minutos;
+
+    cout << "Introduce el año de la cita que quieres borrar: ";
+    cin >> year;
+    //getchar();
+    cout << endl;
+
+    cout << "Introduce el mes de la cita que quieres borrar: ";
+    cin >> month;
+    //getchar();
+    cout << endl;
+
+    cout << "Introduce el dia de la cita que quieres borrar: ";
+    cin >> day;    
+    //getchar();
+    cout << endl;        
+
+    cout << "Introduce la hora de la cita que quieres borrar: ";
+    cin >> hora;
+    //getchar();
+    cout << endl;
+
+    cout << "Introduce los minutos de la cita que quieres borrar: ";
+    cin >> minutos;
+    //getchar();
+    cout << endl;
+
+    if (!buscaCita(paciente, day, month, year, hora, minutos)){
+
+        cout << "No existe dicha cita en la base de datos." << endl;
+    }
+
+    else{
+
+        list <Cita>::iterator i;
+
+        for (i = aux.begin(); i != aux.end(); i++){
+
+            if ((i->getYear() == year) && (i->getMonth() == month) && (i->getDay() == day) && 
+            (i->getHora() == hora) && (i->getMinutos() == minutos)){
+
+                i = aux.erase(i);
+            }
+        }
+
+        list <Cita>::iterator j;
+
+        for (j = citas_.begin(); j != citas_.end(); j++){   
+            
+            if ((j->getYear() == year) && (j->getMonth() == month) && (j->getDay() == day) && 
+            (j->getHora() == hora) && (j->getMinutos() == minutos)){
+
+                j = aux.erase(j);
+            }
+        }
+
+        cout << "Cita borrada con éxito de la base de datos." << endl;
+    }
+
+    escribeCitas();
+}
 
 //Muestra las citas con fecha igual a la que marca el ordenador
 void Sistema::verCitasHoy(){ 
 
-    list <Cita>::iterator i;
+    if (citas_.empty()){
 
-    cout << "Sus citas de hoy son las siguientes:" << endl;
+        cout << "No hay citas que mostrar en la base de datos." << endl;
+    }
 
-    for (i = citas_.begin(); i != citas_.end(); i++){
+    else{
 
-        if ((i->getDay() == tiempo->tm_mday) && (i->getMonth() == (tiempo->tm_mon)+1) && (i->getYear() == ((tiempo->tm_year)+1900))){
+        list <Cita>::iterator i;
 
-            cout << "Año: " << i->getYear() << endl;
+        cout << "Sus citas de hoy son las siguientes:\n" << endl;
 
-                    cout << "DNI del paciente: " << i->getDniPaciente() << endl;
-                    cout << "Mes: " << i->getMonth() << endl;
-                    cout << "Dia: " << i->getDay() << endl;
-                    cout << "Hora: ";
+        for (i = citas_.begin(); i != citas_.end(); i++){
 
-                    cout.fill('0');
-                    cout.width(2);
-                    cout << i->getHora();
+            if ((i->getDay() == tiempo->tm_mday) && (i->getMonth() == (tiempo->tm_mon)+1) && (i->getYear() == ((tiempo->tm_year)+1900))){
 
-                    cout << ":";
+                cout << "DNI del paciente: " << i->getDniPaciente() << endl;
+                
 
-                    cout.fill('0');
-                    cout.width(2);
-                    cout << i->getMinutos();
+                cout << "Año: " << i->getYear() << endl;
+                cout << "Mes: " << i->getMonth() << endl;
+                cout << "Dia: " << i->getDay() << endl;
+                cout << "Hora: ";
 
-                    cout << endl;
-                    cout << endl;
+                cout.fill('0');
+                cout.width(2);
+                cout << i->getHora();
 
-                    cout << i->getMotivo();
+                cout << ":";
 
-                    cout << endl;
-                    cout << endl;
+                cout.fill('0');
+                cout.width(2);
+                cout << i->getMinutos();
+
+                cout << endl;
+                cout << endl;
+            }
         }
     }
 }

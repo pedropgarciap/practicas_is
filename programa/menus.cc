@@ -1,5 +1,6 @@
 #include "menus.h"
 #include <iostream>
+#include <locale.h>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ int Menu::menuPrincipal(){
     cout << "\nIntroduzca una de las siguientes opciones:\n";
     cout << "··········································\n";
     cout << "[1] -> Agregar un paciente a la base de datos.\n";
-    cout << "[2] -> Buscar paciente por dni.\n";
+    cout << "[2] -> Buscar paciente por dni para opciones de Tratamientos/Citas/Historial.\n";
     cout << "[3] -> Modificar paciente por dni.\n";
     cout << "[4] -> Mostrar todos los pacientes de la base de datos.\n";
     cout << "[5] -> Borrar paciente por dni.\n";
@@ -111,7 +112,8 @@ int Menu::submenuCitas(){
     cout << "··········································\n";
     cout << "[1] -> Añadir cita.\n";
     cout << "[2] -> Modificar cita.\n";
-    cout << "[3] -> Ver citas.\n";
+    cout << "[3] -> Borrar cita.\n";
+    cout << "[4] -> Ver citas.\n";
     cout << "\n";
 
     cout << "[-1] -> SALIR.\n";

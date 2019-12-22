@@ -5,6 +5,7 @@
 #include <list>
 #include "tratamientos.h"
 #include "citas.h"
+#include <locale.h>
 
 /*
 Recoge la clase paciente con todas sus funciones propias como el 

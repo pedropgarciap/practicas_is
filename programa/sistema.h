@@ -42,8 +42,10 @@ class Sistema
 
         void leeFichero(); //Subfuncion
         void leeTratamientos(); //Subfuncion
+        void leeCitas();
         void escribeFichero(); //Subfuncion
         void escribeTratamientos(); //Subfuncion
+        void escribeCitas();
 
         void mostrarPacientes(); //Funcion del menu
 
@@ -54,6 +56,9 @@ class Sistema
         bool comprobarCita(int day, int month, int year, int hora, int minutos); //Subfuncion
         void verCitas(Paciente & paciente); //Funcion del menu
         void addCita(Paciente & paciente); //Funcion del menu
+        bool buscaCita(Paciente paciente, int day, int month, int year, int hora, int minutos); //Funcion del menu
+        void modificarCita(Paciente & paciente); //Funcion del menu
+        void borrarCita(Paciente & paciente); //Funcion del menu
         void verCitasHoy(); //Funcion del menu
 };
 
