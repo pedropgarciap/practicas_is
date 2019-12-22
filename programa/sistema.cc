@@ -15,7 +15,7 @@ Sistema::Sistema(){
 
     cout << endl;
     cout << "********************************************************************************" << endl;
-    cout << "BIENVENIDO A PROGECIT, SU PROGRAMA DE GESTION DE CITAS"<< endl;
+    cout << "BIENVENIDO A PROGECIT, SU PROGRAMA DE GESTION DE PACIENTES"<< endl;
     cout << "********************************************************************************" << endl;
     cout << endl;
 
@@ -89,7 +89,7 @@ Sistema::Sistema(){
 
                 if (pacientes_.empty()){
 
-                    cout << "No hay pacientes que mostrar en la base de datos." << endl;
+                    cout << "Actualmente no hay pacientes en la base de datos." << endl;
 
                     opcion = 0;
                     break;
@@ -193,13 +193,13 @@ int Sistema::addPaciente(){
 
     string nombre;
 
-    cout << "Introduzca ahora el nombre del paciente: ";
+    cout << "Nombre del paciente: ";
     getline(cin, nombre);
     cout << endl;
     
     string apellidos;
 
-    cout << "Continue introduciendo los apellidos del paciente: ";
+    cout << "Apellidos del paciente: ";
     getline(cin, apellidos);
     cout << endl;
 
@@ -231,7 +231,7 @@ int Sistema::addPaciente(){
             cout << endl;
             auxiliar.setFechaNacimiento(day, month, year);
             
-            cout << "Direccion postal del paciente (Sin introduzca comas): ";
+            cout << "Direccion postal del paciente (NO introduzca comas): ";
             getline(cin, direccionpostal);
             cout << endl;
             auxiliar.setDireccionPostal(direccionpostal);
@@ -274,7 +274,7 @@ int Sistema::addPaciente(){
         else {
 
             cout << "La opcion elegida no es valida." << endl;
-            cout << "Pruebe a escribir S si desea introducir los demas parametros, o N si en su defecto no desea introducirlos:" << endl;
+            cout << "Pruebe a escribir S si desea introducir los demas parametros, o N si no desea introducirlos:" << endl;
 
             getline(cin, opcion);
             cout << endl;
@@ -461,7 +461,7 @@ void Sistema::modificarPaciente(){
 
         string dni;
 
-        cout << "\nIntroduce el dni del paciente a modificar: ";
+        cout << "\nIntroduce el DNI del paciente a modificar: ";
         getline(cin, dni);
         cout << endl;
 
@@ -494,7 +494,7 @@ void Sistema::modificarPaciente(){
 
                     case 1:
                         
-                        cout << "Introduzca el nombre para modificarlo: ";
+                        cout << "Introduzca el nuevo nombre: ";
                         getline(cin, nombre);
                         cout << endl;
 
@@ -505,7 +505,7 @@ void Sistema::modificarPaciente(){
 
                     case 2:
 
-                        cout << "Introduzca los apellidos para modificarlo: ";
+                        cout << "Introduzca los nuevos apellidos: ";
                         getline(cin, apellidos);
                         cout << endl;
 
@@ -516,15 +516,15 @@ void Sistema::modificarPaciente(){
 
                     case 3:
                         
-                        cout << "Introduzca el dia para modificarlo: ";
+                        cout << "Introduzca el nuevo dia: ";
                         getline(cin, day);
                         cout << endl;
 
-                        cout << "Introduzca el dia para modificarlo: ";
+                        cout << "Introduzca el nuevo mes: ";
                         getline(cin, month);
                         cout << endl;
 
-                        cout << "Introduzca el año para modificarlo: ";
+                        cout << "Introduzca el nuevo año: ";
                         getline(cin, year);
                         cout << endl;
 
@@ -535,7 +535,7 @@ void Sistema::modificarPaciente(){
 
                     case 4:
 
-                        cout << "Introduzca la direccion postal para modificarla: ";
+                        cout << "Introduzca la nueva direccion postal: ";
                         getline(cin, direccionpostal);
                         cout << endl;
 
@@ -546,7 +546,7 @@ void Sistema::modificarPaciente(){
 
                     case 5:
 
-                        cout << "Introduzca el numero de telefono para modificarlo: ";
+                        cout << "Introduzca el nuevo numero de telefono: ";
                         cin >> telefono;
                         cout << endl;
                         
@@ -559,7 +559,7 @@ void Sistema::modificarPaciente(){
 
                     case 6:
 
-                        cout << "Introduzca Si, si el paciente asiste por el seguro o en su defecto No, si este asiste pagando: ";
+                        cout << "Introduzca Si, si el paciente asiste por el seguro, o No, si este asiste pagando: ";
                         getline(cin, seguromutua);
                         cout << endl;
 
@@ -573,7 +573,7 @@ void Sistema::modificarPaciente(){
 
                             else{
 
-                                cout << "Parametro incorrecto. Pruebe a introducir Si, si el paciente asiste por el seguro o en su defecto No, si este asiste pagando: ";
+                                cout << "Parametro incorrecto. Pruebe a introducir Si, si el paciente asiste por el seguro o No, si este asiste pagando: ";
                                 getline(cin, seguromutua);
                                 cout << endl;
                             }
@@ -722,6 +722,25 @@ void Sistema::borrarPaciente(){
                     i = pacientes_.erase(i);
 
                     cout << "Paciente borrado con éxito, volviendo al menú." << endl;
+
+                    string nombrefichero;
+                    nombrefichero = (dni + "_citas.txt");
+                    remove(nombrefichero.c_str());
+
+                    nombrefichero = (dni + "_tratamientos.txt");
+                    remove(nombrefichero.c_str());
+
+                    list <Cita>::iterator z;
+
+                    for (z = citas_.begin(); z != citas_.end(); z++)
+                    {
+                        if (z->getDniPaciente() == dni){
+
+                            z = citas_.erase(z);
+
+                            escribeCitas();
+                        }
+                    }
                 }
                 
                 else{
@@ -907,19 +926,19 @@ void Sistema::addTratamiento(Paciente & paciente){
     string duracion, medicacion, dosis, regularidad;
     
 
-    cout << "Introduzca la duracion del tratamiento a añadir: ";
+    cout << "Duracion del tratamiento: ";
     getline(cin, duracion);
     cout << endl;
 
-    cout << "Introduzca la medicación del tratamiento a añadir: ";
+    cout << "Medicación del tratamiento: ";
     getline(cin, medicacion);
     cout << endl;
 
-    cout << "Introduzca la dosis del tratamiento a añadir: ";
+    cout << "Dosis del tratamiento: ";
     getline(cin, dosis);
     cout << endl;
 
-    cout << "Introduzca por ultimo la regularidad del tratamiento a añadir: ";
+    cout << "Regularidad del tratamiento: ";
     getline(cin, regularidad);
     cout << endl;
 
@@ -977,7 +996,7 @@ void Sistema::modificarTratamiento(Paciente &paciente){
 
                 case 1:
 
-                    cout << "Introduzca la duración para modificarla: ";
+                    cout << "Introduzca la nueva duración: ";
                     getline(cin, duracion);
                     cout << endl;
 
@@ -986,7 +1005,7 @@ void Sistema::modificarTratamiento(Paciente &paciente){
                     
                 case 2:
 
-                    cout << "Introduzca la medicación para modificarla: ";
+                    cout << "Introduzca la nueva medicación: ";
                     getline(cin, medicacion);
                     cout << endl;
 
@@ -995,7 +1014,7 @@ void Sistema::modificarTratamiento(Paciente &paciente){
                             
                 case 3:
 
-                    cout << "Introduzca la dosis para modificarla: ";
+                    cout << "Introduzca la nueva dosis: ";
                     getline(cin, dosis);
                     cout << endl;
 
@@ -1004,7 +1023,7 @@ void Sistema::modificarTratamiento(Paciente &paciente){
 
                 case 4:
 
-                    cout << "Introduzca la regularidad para modificarla: ";
+                    cout << "Introduzca la nueva regularidad: ";
                     getline(cin, regularidad);
                     cout << endl;
 
@@ -1114,9 +1133,7 @@ void Sistema::verCitas(Paciente & paciente){
 
                 for (i = aux.begin(); i != aux.end(); i++){ 
 
-                    cout << "Año: " << i->getYear() << endl;
-                    cout << "Mes: " << i->getMonth() << endl;
-                    cout << "Dia: " << i->getDay() << endl;
+                    cout << "Fecha: " << i->getYear() << "/" << i->getMonth() << "/" << i->getDay() << endl;
                     cout << "Hora: ";
 
                     cout.fill('0');
@@ -1142,27 +1159,27 @@ void Sistema::addCita(Paciente & paciente){
     int day, month, year, hora, minutos;
     string motivo;
 
-    cout << "Introduce el numero del año cuando quieres programar la cita: ";
+    cout << "Año cuando quieres programar la cita: ";
     cin >> year;
     //getchar();
     cout << endl;
 
-    cout << "Introduce el numero del mes cuando quieres programar la cita: ";
+    cout << "Mes cuando quieres programar la cita: ";
     cin >> month;
     //getchar();
     cout << endl;
 
-    cout << "Introduce el numero del dia del mes cuando quieres programar la cita: ";
+    cout << "Dia del mes cuando quieres programar la cita: ";
     cin >> day;
     //getchar();
     cout << endl;                
 
-    cout << "Introduce la hora a la que quieres programar la cita: ";
+    cout << "Hora a la que quieres programar la cita: ";
     cin >> hora;
     //getchar();
     cout << endl;
 
-    cout << "Introduce los minutos de la hora en la que quieres programar la cita: ";
+    cout << "Minutos de la hora en la que quieres programar la cita: ";
     cin >> minutos;
     //getchar();
     cout << endl;               
@@ -1186,27 +1203,27 @@ void Sistema::addCita(Paciente & paciente){
 
         cout << endl;
 
-        cout << "Introduce el numero del año cuando quieres programar la cita: ";
+        cout << "Año cuando quieres programar la cita: ";
         cin >> year;
         //getchar();
         cout << endl;
 
-        cout << "Introduce el numero del mes cuando quieres programar la cita: ";
+        cout << "Mes cuando quieres programar la cita: ";
         cin >> month;
         //getchar();
         cout << endl;
 
-        cout << "Introduce el numero del dia del mes cuando quieres programar la cita: ";
+        cout << "Dia del mes cuando quieres programar la cita: ";
         cin >> day;
         //getchar();
         cout << endl;
 
-        cout << "Introduce la hora a la que quieres programar la cita: ";
+        cout << "Hora a la que quieres programar la cita: ";
         cin >> hora;
         //getchar();
         cout << endl;
 
-        cout << "Introduce los minutos de la hora en la que quieres programar la cita: ";
+        cout << "Minutos de la hora en la que quieres programar la cita: ";
         cin >> minutos;
         //getchar();
         cout << endl;
@@ -1288,27 +1305,27 @@ void Sistema::modificarCita(Paciente & paciente){
         cout << "\nModificación de la cita:\n";
         cout << "··········································\n";
 
-        cout << "Introduce el numero del año cuando quieres programar la cita: ";
+        cout << "Año cuando quieres programar la cita: ";
         cin >> year2;
         //getchar();
         cout << endl;
 
-        cout << "Introduce el numero del mes cuando quieres programar la cita: ";
+        cout << "Mes cuando quieres programar la cita: ";
         cin >> month2;
         //getchar();
         cout << endl;
 
-        cout << "Introduce el numero del dia del mes cuando quieres programar la cita: ";
+        cout << "Dia del mes cuando quieres programar la cita: ";
         cin >> day2;
         //getchar();
         cout << endl;                
 
-        cout << "Introduce la hora a la que quieres programar la cita: ";
+        cout << "Hora a la que quieres programar la cita: ";
         cin >> hora2;
         //getchar();
         cout << endl;
 
-        cout << "Introduce los minutos de la hora en la que quieres programar la cita: ";
+        cout << "Minutos de la hora en la que quieres programar la cita: ";
         cin >> minutos2;
         //getchar();
         cout << endl;               
@@ -1332,27 +1349,27 @@ void Sistema::modificarCita(Paciente & paciente){
 
             cout << endl;
 
-            cout << "Introduce el numero del año cuando quieres programar la cita: ";
+            cout << "Año cuando quieres programar la cita: ";
             cin >> year2;
             //getchar();
             cout << endl;
 
-            cout << "Introduce el numero del mes cuando quieres programar la cita: ";
+            cout << "Mes cuando quieres programar la cita: ";
             cin >> month2;
             //getchar();
             cout << endl;
 
-            cout << "Introduce el numero del dia del mes cuando quieres programar la cita: ";
+            cout << "Dia del mes cuando quieres programar la cita: ";
             cin >> day2;
             //getchar();
             cout << endl;
 
-            cout << "Introduce la hora a la que quieres programar la cita: ";
+            cout << "Hora a la que quieres programar la cita: ";
             cin >> hora2;
             //getchar();
             cout << endl;
 
-            cout << "Introduce los minutos de la hora en la que quieres programar la cita: ";
+            cout << "Minutos de la hora en la que quieres programar la cita: ";
             cin >> minutos2;
             //getchar();
             cout << endl;
@@ -1409,27 +1426,27 @@ void Sistema::borrarCita(Paciente & paciente){
 
     int day, month, year, hora, minutos;
 
-    cout << "Introduce el año de la cita que quieres borrar: ";
+    cout << "Año de la cita que quieres borrar: ";
     cin >> year;
     //getchar();
     cout << endl;
 
-    cout << "Introduce el mes de la cita que quieres borrar: ";
+    cout << "Mes de la cita que quieres borrar: ";
     cin >> month;
     //getchar();
     cout << endl;
 
-    cout << "Introduce el dia de la cita que quieres borrar: ";
+    cout << "Dia de la cita que quieres borrar: ";
     cin >> day;    
     //getchar();
     cout << endl;        
 
-    cout << "Introduce la hora de la cita que quieres borrar: ";
+    cout << "Hora de la cita que quieres borrar: ";
     cin >> hora;
     //getchar();
     cout << endl;
 
-    cout << "Introduce los minutos de la cita que quieres borrar: ";
+    cout << "Minutos de la cita que quieres borrar: ";
     cin >> minutos;
     //getchar();
     cout << endl;
@@ -1479,6 +1496,8 @@ void Sistema::verCitasHoy(){
 
     else{
 
+        int contador=0;
+
         list <Cita>::iterator i;
 
         cout << "Sus citas de hoy son las siguientes:\n" << endl;
@@ -1487,12 +1506,11 @@ void Sistema::verCitasHoy(){
 
             if ((i->getDay() == tiempo->tm_mday) && (i->getMonth() == (tiempo->tm_mon)+1) && (i->getYear() == ((tiempo->tm_year)+1900))){
 
+                contador++;
                 cout << "DNI del paciente: " << i->getDniPaciente() << endl;
                 
 
-                cout << "Año: " << i->getYear() << endl;
-                cout << "Mes: " << i->getMonth() << endl;
-                cout << "Dia: " << i->getDay() << endl;
+                cout << "Fecha: " << i->getYear() << "/" << i->getMonth() << "/" << i->getDay() << endl;
                 cout << "Hora: ";
 
                 cout.fill('0');
@@ -1508,6 +1526,10 @@ void Sistema::verCitasHoy(){
                 cout << endl;
                 cout << endl;
             }
+        }
+        if (contador == 0){
+
+            cout << "Hoy no hay citas programadas." << endl;
         }
     }
 }
