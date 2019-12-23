@@ -6,6 +6,7 @@
 #include "tratamientos.h"
 #include "citas.h"
 #include <locale.h>
+#include "historial.h"
 
 /*
 Recoge la clase paciente con todas sus funciones propias como el 
@@ -16,20 +17,21 @@ using namespace std;
 
 class Paciente{
 
-private:
+    private:
 
-string dni_;
-string nombre_;
-string apellidos_;
-string fechanacimiento_;
-string direccionpostal_;
-unsigned long int telefono_;
-string seguromutua_;
+        string dni_;
+        string nombre_;
+        string apellidos_;
+        string fechanacimiento_;
+        string direccionpostal_;
+        unsigned long int telefono_;
+        string seguromutua_;
 
-list <Tratamiento> tratamientos_;
-list <Cita> citas_;
+        list <Tratamiento> tratamientos_;
+        list <Cita> citas_;
+        list <Historial> historial_;
 
-public:
+    public:
 
     //CONSTRUCTOR
     Paciente(string dni, string nombre, string apellidos, string fechanacimiento = "XX/XX/XXXX", string direccionpostal = "",
@@ -45,6 +47,7 @@ public:
     inline string getSeguroMutua(){return seguromutua_;};
     inline list <Tratamiento> & getTratamientos(){return tratamientos_;};
     inline list <Cita> & getCitas(){return citas_;};
+    inline list <Historial> & getHistorial(){return historial_;}
 
     //MODIFICADORES
     inline void setDNI(string dni){dni_ = dni;}; 
@@ -58,6 +61,7 @@ public:
     inline void setTratamientos(Tratamiento tratamiento){tratamientos_.push_front(tratamiento);};
     inline void setTratamientosAtras(Tratamiento tratamiento){tratamientos_.push_back(tratamiento);};
     inline void setCitas(Cita cita){citas_.push_back(cita);};
+    inline void setHistorial(Historial historial){historial_.push_front(historial);};
 };
 
 #endif

@@ -104,6 +104,27 @@ int Menu::submenuTratamientos(){
     return opcion;
 }
 
+int Menu::submenuHistorial(){
+
+    int opcion;
+
+    cout << "\nIntroduzca una de las siguientes opciones:\n";
+    cout << "··········································\n";
+    cout << "[1] -> Añadir entrada al historial.\n";
+    cout << "[2] -> Ver historial.\n";    
+    cout << "\n";
+    
+    cout << "[-1] -> SALIR.\n";
+    cout << "\n";
+    cout << "Su opcion: ";
+    cin >> opcion;
+    cout << endl;
+    getchar();
+
+    return opcion;
+}
+
+
 int Menu::submenuCitas(){
 
     int opcion;
@@ -125,7 +146,6 @@ int Menu::submenuCitas(){
 
     return opcion;
 }
-
 
 //Submenu de modificacion del tratamiento de un paciente
 int Menu::submenuModificarTratamientos(){

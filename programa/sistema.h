@@ -3,6 +3,7 @@
 
 #include "pacientes.h"
 #include "citas.h"
+#include "historial.h"
 #include <list>
 
 /*
@@ -43,9 +44,11 @@ class Sistema
         void leeFichero(); //Subfuncion
         void leeTratamientos(); //Subfuncion
         void leeCitas();
+        void leeHistorial();
         void escribeFichero(); //Subfuncion
         void escribeTratamientos(); //Subfuncion
         void escribeCitas();
+        void escribeHistorial();
 
         void mostrarPacientes(); //Funcion del menu
 
@@ -60,6 +63,9 @@ class Sistema
         void modificarCita(Paciente & paciente); //Funcion del menu
         void borrarCita(Paciente & paciente); //Funcion del menu
         void verCitasHoy(); //Funcion del menu
+
+        void addHistorial(Paciente & paciente);
+        void verHistorial(Paciente & paciente);
 };
 
 

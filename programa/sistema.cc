@@ -15,7 +15,7 @@ Sistema::Sistema(){
 
     cout << endl;
     cout << "********************************************************************************" << endl;
-    cout << "BIENVENIDO A PROGECIT, SU PROGRAMA DE GESTION DE PACIENTES"<< endl;
+    cout << "BIENVENIDO A PROGECIT, SU PROGRAMA DE GESTION DE CITAS Y PACIENTES"<< endl;
     cout << "********************************************************************************" << endl;
     cout << endl;
 
@@ -25,6 +25,7 @@ Sistema::Sistema(){
     leeFichero();
     leeTratamientos();
     leeCitas();
+    leeHistorial();
 
     Menu m;
     string nombre, apellidos;
@@ -368,6 +369,40 @@ void Sistema::buscarPaciente(string dni){
 
                     case 2:
 
+                        opcion = m.submenuHistorial();
+
+                        while(opcion != -1){
+
+                            switch (opcion){
+
+                                case 0:
+
+                                    opcion = m.submenuHistorial(); 
+                                    break;
+
+                                case 1:
+
+                                    addHistorial(*i);
+                                                                     
+                                    opcion = 0;    
+                                    break;
+
+                                case 2:
+
+                                    verHistorial(*i);
+
+                                    opcion = 0;
+                                    break;
+
+                                default:
+
+                                    cout << "La opcion elegida no es valida, prueba a elegir una opcion del menu." << endl;
+                            
+                                    opcion = 0;
+                                    break;
+                            }
+                        }    
+
                         opcion = 0;
                         break;
 
@@ -681,6 +716,28 @@ void Sistema::escribeCitas(){
     }
 }
 
+void Sistema::escribeHistorial(){
+    
+    list <Paciente>::iterator i;
+
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++){
+
+        ofstream salida;
+        salida.open(i->getDNI()+ "_historial.txt");
+
+        list <Historial> aux = i->getHistorial();
+        list <Historial>::iterator j;
+
+        for (j = aux.begin(); j != aux.end(); j++){
+        
+            salida << j->getYear() << "," << j->getMonth() << "," << j->getDay() << ","
+            << j->getHora() << "," << j->getMinutos() << "," << j->getMotivo() << "\n";
+        }
+    
+        salida.close();
+    }
+}
+
 //Elimina un paciente de la base de datos.
 void Sistema::borrarPaciente(){
 
@@ -728,6 +785,9 @@ void Sistema::borrarPaciente(){
                     remove(nombrefichero.c_str());
 
                     nombrefichero = (dni + "_tratamientos.txt");
+                    remove(nombrefichero.c_str());
+
+                    nombrefichero = (dni + "_historial.txt");
                     remove(nombrefichero.c_str());
 
                     list <Cita>::iterator z;
@@ -898,6 +958,49 @@ void Sistema::leeCitas(){
         }
         
         entrada2.close(); 
+    }
+}
+
+void Sistema::leeHistorial(){
+
+    list <Paciente>::iterator i;
+
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++){
+
+        ifstream entrada;
+
+        entrada.open(i->getDNI() + "_historial.txt");
+
+        char year [50];
+        char month [50];
+        char day [50];
+        char hora [50];
+        char minutos [50];
+        char motivo [256];
+
+        while (entrada.getline(year, 256, ',')){
+
+            entrada.getline(month, 256, ',');
+            entrada.getline(day, 256, ',');
+            entrada.getline(hora, 256, ',');
+            entrada.getline(minutos, 256, ',');
+            entrada.getline(motivo, 256, '\n');
+    
+
+            Historial auxiliar;
+
+            auxiliar.setYear(atoi(year));
+            auxiliar.setMonth(atoi(month));
+            auxiliar.setDay(atoi(day));
+            auxiliar.setHora(atoi(hora));
+            auxiliar.setMinutos(atoi(minutos));
+            auxiliar.setMotivo(motivo);
+            auxiliar.setDniPaciente(i->getDNI());
+
+            i->setHistorial(auxiliar);
+        }
+        
+        entrada.close(); 
     }
 }
 
@@ -1534,3 +1637,73 @@ void Sistema::verCitasHoy(){
     }
 }
 
+
+void Sistema::addHistorial(Paciente & paciente){
+
+    now = time(0);
+    tiempo = localtime(&now);
+
+    Historial c;
+
+    string motivo;
+    cout << "Introduce el motivo de la visita: " << endl;
+    getline(cin, motivo);
+    cout << endl;
+
+    c.setMotivo(motivo);
+
+    c.setDay(tiempo->tm_mday);
+    c.setMonth((tiempo->tm_mon)+1);
+    c.setYear((tiempo->tm_year)+1900);
+    c.setHora(tiempo->tm_hour);
+    c.setMinutos(tiempo->tm_min);
+    c.setDniPaciente(paciente.getDNI());
+
+    paciente.setHistorial(c);
+
+    cout << "Entrada en el historial introducida con éxito." << endl;
+
+    escribeHistorial();
+}
+
+void Sistema::verHistorial(Paciente & paciente){
+
+    list <Historial>::iterator i;
+    list <Historial> & aux = paciente.getHistorial();
+
+    if (aux.empty()){
+
+        cout << "El historial está vacio." << endl;
+    } 
+
+    else{
+
+        for (i = aux.begin(); i != aux.end(); i++){
+
+            cout << "Fecha de entrada en el historial: " << i->getDay() << "/" 
+            << i->getMonth() << "/" << i->getYear() << endl;
+            cout << "Hora: ";
+
+            cout.fill('0');
+            cout.width(2);
+
+            cout << i->getHora();
+
+            cout << ":";
+
+            cout.fill('0');
+            cout.width(2);
+
+            cout << i->getMinutos();
+
+            cout << endl;
+
+            cout << "Motivo de la visita: \n" << endl;
+            cout << i->getMotivo(); 
+
+            cout << endl;
+        }
+
+        cout << "Historial mostrado con éxito." << endl;
+    }    
+}
