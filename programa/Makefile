@@ -10,6 +10,7 @@ MENUS = menus
 PACIENTES = pacientes
 TRATAMIENTOS = tratamientos
 CITAS = citas
+HISTORIAL = historial
 
 #Ejecucion·························································
 
@@ -19,9 +20,9 @@ CITAS = citas
 #Reglas
 
 main:
-	$(CXX) $(MAIN).cc $(SISTEMA).cc $(MENUS).cc $(PACIENTES).cc $(TRATAMIENTOS).cc $(CITAS).cc -o $(MAIN) $(CXXFLAGS)
+	$(CXX) $(MAIN).cc $(SISTEMA).cc $(MENUS).cc $(PACIENTES).cc $(TRATAMIENTOS).cc $(CITAS).cc $(HISTORIAL).cc -o $(MAIN) $(CXXFLAGS)
 
 clean:
-	rm *.o main
+	rm *.txt main
 
 all: main

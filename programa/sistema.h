@@ -43,12 +43,12 @@ class Sistema
 
         void leeFichero(); //Subfuncion
         void leeTratamientos(); //Subfuncion
-        void leeCitas();
-        void leeHistorial();
+        void leeCitas(); //Subfuncion
+        void leeHistorial(); //Subfuncion
         void escribeFichero(); //Subfuncion
         void escribeTratamientos(); //Subfuncion
-        void escribeCitas();
-        void escribeHistorial();
+        void escribeCitas(); //Subfuncion
+        void escribeHistorial(); //Subfuncion
 
         void mostrarPacientes(); //Funcion del menu
 
@@ -64,8 +64,8 @@ class Sistema
         void borrarCita(Paciente & paciente); //Funcion del menu
         void verCitasHoy(); //Funcion del menu
 
-        void addHistorial(Paciente & paciente);
-        void verHistorial(Paciente & paciente);
+        void addHistorial(Paciente & paciente); //Funcion del menu
+        void verHistorial(Paciente & paciente); //Funcion del menu
 };
 
 

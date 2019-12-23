@@ -104,6 +104,7 @@ int Menu::submenuTratamientos(){
     return opcion;
 }
 
+//Submenu del historial de un paciente
 int Menu::submenuHistorial(){
 
     int opcion;
@@ -124,7 +125,7 @@ int Menu::submenuHistorial(){
     return opcion;
 }
 
-
+//Submenu de las citas de un paciente
 int Menu::submenuCitas(){
 
     int opcion;

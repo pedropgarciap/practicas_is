@@ -263,12 +263,16 @@ int Sistema::addPaciente(){
 
             auxiliar.setSeguroMutua(seguro);
 
-            cout << "\nPARAMETROS INTRODUCIDOS CON EXITO." << endl;
+            cout << "\n*********************************************************" << endl;
+            cout << " XXXXX------PARAMETROS INTRODUCIDOS CON EXITO------XXXXX." << endl;
+            cout << "*********************************************************" << endl;
         }
 
         else if (opcion == "N"){
 
-            cout << "\nVOLVIENDO AL MENU." << endl;
+            cout << "\n*********************************************************" << endl;
+            cout << "VOLVIENDO AL MENU." << endl;
+            cout << "*********************************************************" << endl;
             opcion = "Salir";
         }
 
@@ -286,6 +290,7 @@ int Sistema::addPaciente(){
     escribeFichero();
 
     cout << "\nPACIENTE INTRODUCIDO CON EXITO." << endl;
+    cout << "*********************************************************" << endl;
     return 1;
 }
 
@@ -535,6 +540,10 @@ void Sistema::modificarPaciente(){
 
                         aux->setNombre(nombre);
 
+                        cout << "\n*******************************************************" << endl;
+                        cout << " XXXXX------PARAMETRO INTRODUCIDO CON EXITO------XXXXX." << endl;
+                        cout << "*******************************************************" << endl;
+
                         opcion = 0;
                         break;
 
@@ -545,6 +554,10 @@ void Sistema::modificarPaciente(){
                         cout << endl;
 
                         aux->setApellidos(apellidos);
+
+                        cout << "\n*******************************************************" << endl;
+                        cout << " XXXXX------PARAMETRO INTRODUCIDO CON EXITO------XXXXX." << endl;
+                        cout << "*******************************************************" << endl;
 
                         opcion = 0;
                         break;
@@ -565,6 +578,10 @@ void Sistema::modificarPaciente(){
 
                         aux->setFechaNacimiento(day, month, year);
 
+                        cout << "\n*******************************************************" << endl;
+                        cout << " XXXXX------PARAMETRO INTRODUCIDO CON EXITO------XXXXX." << endl;
+                        cout << "*******************************************************" << endl;
+
                         opcion = 0;
                         break;
 
@@ -575,6 +592,10 @@ void Sistema::modificarPaciente(){
                         cout << endl;
 
                         aux->setDireccionPostal(direccionpostal);
+
+                        cout << "\n*******************************************************" << endl;
+                        cout << " XXXXX------PARAMETRO INTRODUCIDO CON EXITO------XXXXX." << endl;
+                        cout << "*******************************************************" << endl;
 
                         opcion = 0;
                         break;
@@ -588,6 +609,10 @@ void Sistema::modificarPaciente(){
                         //getchar();
 
                         aux->setTelefono(telefono);
+
+                        cout << "\n*******************************************************" << endl;
+                        cout << " XXXXX------PARAMETRO INTRODUCIDO CON EXITO------XXXXX." << endl;
+                        cout << "*******************************************************" << endl;
 
                         opcion = 0;
                         break;
@@ -616,7 +641,9 @@ void Sistema::modificarPaciente(){
 
                         aux->setSeguroMutua(seguromutua);
 
-                        cout << "\nPARAMETROS INTRODUCIDOS CON EXITO." << endl;
+                        cout << "\n*******************************************************" << endl;
+                        cout << " XXXXX------PARAMETRO INTRODUCIDO CON EXITO------XXXXX." << endl;
+                        cout << "*******************************************************" << endl;
 
                         opcion = 0;
                         break;
@@ -634,7 +661,9 @@ void Sistema::modificarPaciente(){
     }
 
     escribeFichero();
-    cout << "\nVolviendo al menu principal." << endl;
+    cout << "\n****************************" << endl;
+    cout << "VOLVIENDO AL MENU PRINCIPAL." << endl;
+    cout << "****************************" << endl;
 }
 
 //Vuelca al fichero pacientes.txt el nuevo paciente
@@ -762,6 +791,7 @@ void Sistema::borrarPaciente(){
             if (i->getDNI() == dni){
 
                 cout << "LOS DATOS DEL PACIENTE ELEGIDO PARA BORRAR SON: " << endl;
+                cout << "················································" << endl;
 
                 cout << "\nDNI: " << i->getDNI() << endl;
                 cout << "Nombre: " << i->getNombre() << endl;
@@ -771,14 +801,19 @@ void Sistema::borrarPaciente(){
                 cout << "Telefono: " << i->getTelefono() << endl;
                 cout << "Seguro/Mutua: " <<  i->getSeguroMutua() << endl;    
 
-                cout << "Para confirmar que desea eliminar el paciente con DNI: " << dni << " introduzca su nombre aqui: ";
+                cout << "\n********************************************************************************************" << endl;
+                cout << "ADVERTENCIA. Al borrar el paciente borraras todo lo relacionado con este." << endl;
+                cout << "********************************************************************************************" << endl;
+                cout << "\nPara confirmar que desea eliminar el paciente con DNI: " << dni << " introduzca su nombre aqui: ";
                 getline(cin, aux);
 
                 if (aux == i->getNombre()){
 
                     i = pacientes_.erase(i);
 
-                    cout << "Paciente borrado con éxito, volviendo al menú." << endl;
+                    cout << "\n********************************************************" << endl;
+                    cout << "PACIENTE BORRADO CON EXITO. VOLVIENDO AL MENU PRINCIPAL." << endl;
+                    cout << "********************************************************" << endl;
 
                     string nombrefichero;
                     nombrefichero = (dni + "_citas.txt");
@@ -805,7 +840,9 @@ void Sistema::borrarPaciente(){
                 
                 else{
 
-                    cout << "Confirmación erronea, volviendo al menú." << endl;
+                    cout << "\n**************************************************" << endl;
+                    cout << "CONFIRMACION ERRONEA. VOLVIENDO AL MENU PRINCIPAL." << endl;
+                    cout << "**************************************************" << endl;
                 }
             }
         }
@@ -1020,7 +1057,9 @@ void Sistema::mostrarPacientes(){
         cout << "Seguro/Mutua: " <<  i->getSeguroMutua() << endl;
     }
     
-    cout << "\nPACIENTES MOSTRADOS CON EXITO." << endl;
+    cout << "\n******************************" << endl;
+    cout << "PACIENTES MOSTRADOS CON EXITO." << endl;
+    cout << "******************************" << endl;
 }
 
 //Añade un nuevo tratamiento y el anterior pasa a estado obsoleto
@@ -1135,7 +1174,9 @@ void Sistema::modificarTratamiento(Paciente &paciente){
 
                 default:
 
-                    cout << "Opción incorrecta, prueba a elegir una opción del menú." << endl;
+                    cout << "\n***********************************************************" << endl;
+                    cout << "OPCION INCORRECTA. PRUEBA A INTRODUCIR UNA OPCION DEL MENU." << endl;
+                    cout << "***********************************************************" << endl;
 
                     opcion = 0;
                     break;
@@ -1197,7 +1238,9 @@ void Sistema::mostrarTratamiento(Paciente & paciente){
 
         }
         
-        cout << "\nTRATAMIENTOS MOSTRADOS CON EXITO." << endl;
+        cout << "\n*********************************" << endl;
+        cout << "TRATAMIENTOS MOSTRADOS CON EXITO." << endl;
+        cout << "*********************************" << endl;
     }
 }
 
@@ -1236,7 +1279,7 @@ void Sistema::verCitas(Paciente & paciente){
 
                 for (i = aux.begin(); i != aux.end(); i++){ 
 
-                    cout << "Fecha: " << i->getYear() << "/" << i->getMonth() << "/" << i->getDay() << endl;
+                    cout << "Fecha: " << i->getDay() << "/" << i->getMonth() << "/" << i->getYear() << endl;
                     cout << "Hora: ";
 
                     cout.fill('0');
@@ -1337,11 +1380,14 @@ void Sistema::addCita(Paciente & paciente){
     citas_.push_front(c);
     paciente.setCitas(c);
 
-    cout << "Cita introducida con éxito." << endl;
+    cout << "\n***************************" << endl;
+    cout << "CITA INTRODUCIDA CON EXITO." << endl;
+    cout << "***************************" << endl;
 
     escribeCitas();
 }
 
+//Subfuncion que busca una cita pedida para interactuar con ella
 bool Sistema::buscaCita(Paciente paciente, int day, int month, int year, int hora, int minutos){
 
     list <Cita>::iterator i;
@@ -1359,6 +1405,7 @@ bool Sistema::buscaCita(Paciente paciente, int day, int month, int year, int hor
     return false;
 }
 
+//Modifica una cita de un paciente dado
 void Sistema::modificarCita(Paciente & paciente){
 
     list <Cita> & aux = paciente.getCitas();
@@ -1406,7 +1453,7 @@ void Sistema::modificarCita(Paciente & paciente){
         int day2, month2, year2, hora2, minutos2;
 
         cout << "\nModificación de la cita:\n";
-        cout << "··········································\n";
+        cout << "························\n";
 
         cout << "Año cuando quieres programar la cita: ";
         cin >> year2;
@@ -1512,12 +1559,15 @@ void Sistema::modificarCita(Paciente & paciente){
             }
         }
 
-        cout << "Cita modificada con éxito." << endl;
+        cout << "\n**************************" << endl;
+        cout << "CITA MODIFICADA CON EXITO." << endl;
+        cout << "**************************" << endl;
     }
 
     escribeCitas();
 }
 
+//Borra una cita de un paciente dado
 void Sistema::borrarCita(Paciente & paciente){
 
     list <Cita> & aux = paciente.getCitas();
@@ -1583,7 +1633,10 @@ void Sistema::borrarCita(Paciente & paciente){
             }
         }
 
-        cout << "Cita borrada con éxito de la base de datos." << endl;
+        
+        cout << "\n*********************************" << endl;
+        cout << "CITA BORRADA CON EXITO." << endl;
+        cout << "*********************************" << endl;
     }
 
     escribeCitas();
@@ -1603,7 +1656,8 @@ void Sistema::verCitasHoy(){
 
         list <Cita>::iterator i;
 
-        cout << "Sus citas de hoy son las siguientes:\n" << endl;
+        cout << "\nSus citas de hoy son las siguientes:" << endl;
+        cout << "····································" << endl;
 
         for (i = citas_.begin(); i != citas_.end(); i++){
 
@@ -1613,7 +1667,7 @@ void Sistema::verCitasHoy(){
                 cout << "DNI del paciente: " << i->getDniPaciente() << endl;
                 
 
-                cout << "Fecha: " << i->getYear() << "/" << i->getMonth() << "/" << i->getDay() << endl;
+                cout << "Fecha: " << i->getDay() << "/" << i->getMonth() << "/" << i->getYear() << endl;
                 cout << "Hora: ";
 
                 cout.fill('0');
@@ -1637,7 +1691,7 @@ void Sistema::verCitasHoy(){
     }
 }
 
-
+//Añade una entrada al historial. El usuario solo tiene que introducir el motivo y el programa se encarga de la fecha y hora
 void Sistema::addHistorial(Paciente & paciente){
 
     now = time(0);
@@ -1666,6 +1720,7 @@ void Sistema::addHistorial(Paciente & paciente){
     escribeHistorial();
 }
 
+//Muestra el historial de un paciente
 void Sistema::verHistorial(Paciente & paciente){
 
     list <Historial>::iterator i;
@@ -1680,6 +1735,7 @@ void Sistema::verHistorial(Paciente & paciente){
 
         for (i = aux.begin(); i != aux.end(); i++){
 
+            cout << "****************************************************************************" << endl;
             cout << "Fecha de entrada en el historial: " << i->getDay() << "/" 
             << i->getMonth() << "/" << i->getYear() << endl;
             cout << "Hora: ";
@@ -1698,12 +1754,16 @@ void Sistema::verHistorial(Paciente & paciente){
 
             cout << endl;
 
-            cout << "Motivo de la visita: \n" << endl;
-            cout << i->getMotivo(); 
+            cout << "----------------------------------------------------------------------------" << endl;
+            cout << "Motivo de la visita: " << endl;
+            cout << i->getMotivo() << endl; 
+            cout << "****************************************************************************" << endl;
 
             cout << endl;
         }
 
-        cout << "Historial mostrado con éxito." << endl;
+        cout << "\n*********************************" << endl;
+        cout << "HISTORIAL MOSTRADO CON EXITO." << endl;
+        cout << "*********************************" << endl;
     }    
 }

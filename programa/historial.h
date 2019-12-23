@@ -3,6 +3,11 @@
 
 #include <iostream>
 
+/*
+Recoge la clase historial con todas sus funciones propias como el 
+constructor y las bulgarmente llamadas funciones get y set.
+*/
+
 using namespace std;
 
 class Historial{
